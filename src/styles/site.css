@@ -189,13 +189,18 @@
 }
 
 /* ============ Bangku kerja (input kiri, output kanan) ============ */
+.section--tool > .container {
+  /* Align the converter edges with the hero above. */
+  max-width: 1440px;
+}
+
 .bench {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
-  gap: 18px;
-  height: clamp(520px, 72dvh, 700px);
+  gap: 22px;
+  height: clamp(480px, 64dvh, 640px);
 }
 /* Penghubung dua panel: kartu terpisah tidak butuh konektor
    (murni dekoratif, aria-hidden) — disembunyikan. */
@@ -471,11 +476,14 @@
 
 @media (max-width: 1120px) {
   .section--tool {
-    padding-top: 16px;
+    padding-top: 12px;
     padding-bottom: 24px;
   }
+  .section--tool > .container {
+    max-width: 100%;
+  }
   .bench {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     height: auto;
     gap: 18px;
   }
