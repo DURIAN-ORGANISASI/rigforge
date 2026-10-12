@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   Relay — tema Sketch Monokrom (hitam-putih murni + abu)
+   Terang: kertas putih/krem. Gelap: abu sangat gelap (bukan hitam pekat).
+   ============================================================ */
+
+.relay-app {
+  --relay-paper: #faf7f0;          /* krem kertas */
+  --relay-paper-soft: #f3efe4;
+  --relay-ink: #1b1b1b;            /* hitam lembut */
+  --relay-ink-soft: #4a4a4a;
+  --relay-ink-faint: #6f6f6e;
+  --relay-line: #1b1b1b;           /* garis sketsa terang */
+  --relay-panel: #fffdf8;
+  --relay-panel-soft: #f3efe4;
+  --relay-background: var(--relay-paper);
+  --relay-foreground: var(--relay-ink);
+}
+
+.dark .relay-app {
+  --relay-paper: #1e1e20;          /* abu sangat gelap, bukan #000 */
+  --relay-paper-soft: #262628;
+  --relay-ink: #f0ede4;            /* putih kertas */
+  --relay-ink-soft: #c9c6bb;
+  --relay-ink-faint: #8d8d8d;
+  --relay-line: #f0ede4;
+  --relay-panel: #262628;
+  --relay-panel-soft: #2e2e31;
+  --relay-background: var(--relay-paper);
+  --relay-foreground: var(--relay-ink);
+}
+
+@theme inline {
+  --color-background: var(--relay-background);
+  --color-foreground: var(--relay-foreground);
+  --color-paper: var(--relay-paper);
+  --color-panel: var(--relay-panel);
+  --color-ink: var(--relay-ink);
+  --font-hand: var(--font-hand);
+  --font-sans: var(--font-sans);
+}
+
+.relay-app {
+  background: var(--relay-background);
+  color: var(--relay-foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ---------- Utilitas sketsa: border "digambar tangan" ringan ---------- */
+
+.relay-app .sketch {
+  border: 2px solid var(--relay-line);
+  /* radius tiap sudut sedikit beda → kesan goresan tangan */
+  border-radius: 6px 9px 7px 10px;
+}
+
+.relay-app .sketch-panel {
+  border: 2px solid var(--relay-line);
+  border-radius: 8px 11px 9px 12px;
+  background: var(--relay-panel);
+}
+
+.relay-app .sketch-panel-alt {
+  border: 2px solid var(--relay-line);
+  border-radius: 11px 8px 12px 9px;
+  background: var(--relay-panel-soft);
+}
+
+.relay-app .sketch-btn {
+  border: 2px solid var(--relay-line);
+  border-radius: 7px 10px 8px 11px;
+  background: transparent;
+  color: var(--relay-foreground);
+  transition: transform 0.12s ease, background-color 0.12s ease;
+}
+
+.relay-app .sketch-btn:hover {
+  /* tanpa warna: geser 1-2px + penebalan visual via latar abu */
+  transform: translate(-1px, -1px);
+  border-width: 3px;
+  background: color-mix(in srgb, var(--relay-foreground) 8%, transparent);
+}
+
+.relay-app .sketch-btn:active {
+  transform: translate(1px, 1px);
+  border-width: 2px;
+}
+
+.relay-app .sketch-btn:focus-visible {
+  outline: 2px dashed var(--relay-line);
+  outline-offset: 2px;
+}
+
+/* Lencana status kecil — selalu dipakai bersama .sketch untuk bordernya. */
+.relay-app .sketch-badge {
+  padding: 4px 12px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+.relay-app .sketch-input,
+.relay-app .sketch-textarea {
+  border: 2px solid var(--relay-line);
+  border-radius: 9px 7px 10px 8px;
+  background: transparent;
+  color: var(--relay-foreground);
+}
+
+.relay-app .sketch-input:focus,
+.relay-app .sketch-textarea:focus {
+  outline: none;
+  border-width: 3px;
+}
+
+.relay-app .sketch-input::placeholder,
+.relay-app .sketch-textarea::placeholder {
+  color: var(--relay-ink-faint);
+}
+
+.relay-app .font-hand {
+  font-family: var(--font-hand), cursive;
+}

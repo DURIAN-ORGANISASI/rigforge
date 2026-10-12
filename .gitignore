@@ -1,10 +1,10 @@
 node_modules
+.next
+out
 dist
 dist-ssr
+.vercel
 *.local
-
-# Log dev server
-vite-dev*.log
 *.log
 
 # Editor
