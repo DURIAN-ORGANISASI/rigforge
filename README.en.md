@@ -18,7 +18,8 @@
 **Turn raw Roblox avatar data into a Lua script for Roblox Studio.**
 Runs in your browser. Pasted data never passes through a server.
 
-[Try it now](https://rigforge-mocha.vercel.app/) ·
+[Open RigForge](https://rigforge-mocha.vercel.app/) ·
+[Open Relay (Discord)](https://rigforge-mocha.vercel.app/relay) ·
 [Features](#features) ·
 [How to use](#how-to-use) ·
 [Input format](#input-format) ·
@@ -158,7 +159,8 @@ Accessories = {
 ## Known limitations
 
 - **One avatar per conversion.** The result replaces the panel content; nothing is appended.
-- **Data is not saved.** After a reload, the panel is filled with the sample data again. Only the theme choice is remembered.
+- **RigForge does not save conversion input.** After a reload, the panel is filled with the sample data again.
+- **Relay stores bot configuration in the browser** (`localStorage`) so its token and channel slots remain available across sessions.
 - **Results still need testing** in Roblox Studio before use, especially for data from varying sources.
 - **No download button.** The result is copied to the clipboard and pasted into Studio yourself.
 - This tool is independent and **not affiliated with Roblox Corporation**. "Roblox" is a trademark of Roblox Corporation, used only to describe what the tool does.
@@ -171,7 +173,7 @@ Prerequisites: **Node.js 22** and npm.
 git clone https://github.com/akndrn000/rigforge.git
 cd rigforge
 npm install
-npm run dev        # http://localhost:5173
+npm run dev        # http://localhost:3000
 ```
 
 | Command | Purpose |
@@ -204,7 +206,7 @@ docs/                   DESIGN.md (design system), export-assets.py, images/
 
 - **Next.js App Router**, **React**, and **TypeScript**
 - **Plain CSS** with design tokens, neobrutalism style (thick borders, hard shadows without blur, bright block palette)
-- **JetBrains Mono** through Fontsource as the only font
+- **Inter** for the interface, **Patrick Hand** for Relay headings, and **JetBrains Mono** for the editor/code.
 - **Vitest** for unit tests
 
 The visual guide is in [`docs/DESIGN.md`](docs/DESIGN.md).
