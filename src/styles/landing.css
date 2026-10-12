@@ -8,6 +8,26 @@
   --font-ui: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+body {
+  font-family: var(--font-ui);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-ui);
+}
+
+.btn {
+  font-family: var(--font-ui);
+  font-weight: 700;
+}
+
+.pane__title {
+  font-family: var(--font-ui);
+  letter-spacing: -0.02em;
+}
+
 /* ---------- Header: restrained, consistent, and touch-friendly ---------- */
 .site-header {
   background: color-mix(in srgb, var(--bg) 90%, transparent);
@@ -87,10 +107,6 @@
 .header-cta:active {
   transform: translateY(1px);
   box-shadow: 0 1px 0 var(--c-black);
-}
-
-.header-cta__mobile {
-  display: none;
 }
 
 /* ---------- Hero ---------- */
