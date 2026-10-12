@@ -96,7 +96,7 @@
 }
 
 /* Lencana status kecil — selalu dipakai bersama .sketch untuk bordernya. */
-.sketch-badge {
+.relay-app .sketch-badge {
   padding: 4px 12px;
   font-size: 12px;
   line-height: 16px;
@@ -105,7 +105,7 @@
   white-space: nowrap;
 }
 
-.sketch-input,
+.relay-app .sketch-input,
 .relay-app .sketch-textarea {
   border: 2px solid var(--relay-line);
   border-radius: 9px 7px 10px 8px;
@@ -113,7 +113,7 @@
   color: var(--relay-foreground);
 }
 
-.sketch-input:focus,
+.relay-app .sketch-input:focus,
 .relay-app .sketch-textarea:focus {
   outline: none;
   border-width: 3px;
