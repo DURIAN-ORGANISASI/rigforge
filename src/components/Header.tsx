@@ -21,31 +21,39 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="container site-header__in">
-        <div className="brand">
+        <a className="brand" href="#konten" aria-label="RigForge — kembali ke awal">
           <span className="brand__mark">
-            <Icon name="brackets" size={26} />
+            <Icon name="brackets" size={24} />
           </span>
           <div className="brand__text">
             <h1 className="brand__name">RigForge</h1>
+            <span className="brand__descriptor">Avatar data <span aria-hidden="true">→</span> Lua</span>
           </div>
           <span className="deco-zig" aria-hidden="true">
             <svg width="44" height="16" viewBox="0 0 44 16" fill="none" aria-hidden="true" focusable="false">
               <path d="M2 12 L10 4 L18 12 L26 4 L34 12 L42 4" stroke="var(--c-blue)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
-        </div>
+        </a>
 
-        <button
-          type="button"
-          role="switch"
-          aria-checked={theme === 'dark'}
-          aria-label={action}
-          title={action}
-          className={swapping ? 'icon-btn is-swapping' : 'icon-btn'}
-          onClick={onToggle}
-        >
-          <Icon name={theme === 'dark' ? 'moon' : 'sun'} size={24} />
-        </button>
+        <div className="site-header__actions">
+          <a className="header-cta" href="#konverter">
+            <span className="header-cta__desktop">Mulai konversi</span>
+            <span className="header-cta__mobile">Mulai</span>
+            <Icon name="arrow" size={16} />
+          </a>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={theme === 'dark'}
+            aria-label={action}
+            title={action}
+            className={swapping ? 'icon-btn is-swapping' : 'icon-btn'}
+            onClick={onToggle}
+          >
+            <Icon name={theme === 'dark' ? 'moon' : 'sun'} size={22} />
+          </button>
+        </div>
       </div>
     </header>
   )
