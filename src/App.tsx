@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { Converter } from './components/Converter'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
+import { HowItWorks, LandingHero } from './components/Landing'
 
 export default function App() {
   const mainRef = useRef<HTMLElement>(null)
@@ -20,7 +21,9 @@ export default function App() {
       </a>
       <Header />
       <main id="konten" ref={mainRef} tabIndex={-1}>
+        <LandingHero />
         <Converter />
+        <HowItWorks />
       </main>
       <Footer />
     </>
