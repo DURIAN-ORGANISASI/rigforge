@@ -1,13 +1,11 @@
 # RigForge — Skala Desain (neobrutalism modern)
 
 Satu sumber kebenaran untuk konsistensi visual RigForge. Nilai teknis ada di
-`src/styles/tokens.css`; file ini menjelaskan **peran** tiap nilai. Komponen
-hanya memakai `var(--…)` — tidak ada warna hardcode di CSS/JSX lain
-(kecuali data contoh, misalnya `#F2D7CD` di placeholder).
+`src/styles/tokens.css`; file ini menjelaskan **peran** tiap nilai. Komponen memakai token peran untuk tema utama. Warna ilustrasi statis di pratinjau hero dibuat tetap agar menyerupai editor dan contoh kode.
 
 Prinsip: **satu nama peran untuk kedua mode.** Blok `[data-theme='dark']`
 hanya mengganti nilai. Palet blok cerah (`--c-*`) sama di kedua mode.
-Satu font untuk seluruh halaman: JetBrains Mono.
+Teks antarmuka memakai system sans (`--font-ui`); wordmark, data teknis, dan editor Lua memakai JetBrains Mono (`--font-mono`).
 
 > Riwayat: gaya sebelumnya neobrutalism sudut-0 satu-kuning
 > (`--radius: 0`, `--accent: #ffd400`, bayangan krem-di-krem di mode malam
@@ -81,10 +79,9 @@ tidak ada scroll horizontal akibat bayangan di lebar 320–3840.
 - Primer (Generate Paksa): mint + `#111`, bobot 800. Sekunder (Contoh
   Data, Salin Kode): putih + `#111`. Bahaya (Reset): merah + `#111`.
 
-## 5. Font — satu keluarga, skala terkalibrasi (tidak diubah)
+## 5. Font UI dan kode
 
-JetBrains Mono (variable, self-hosted via `@fontsource-variable/jetbrains-mono`)
-untuk **seluruh halaman**: teks, label, dan kode Lua.
+Landing page, deskripsi, navigasi, dan kontrol memakai system sans (`--font-ui`) agar hirarki teks lebih mudah dipindai. Wordmark, label teknis tertentu, dan editor kode tetap memakai JetBrains Mono (`--font-mono`, variable, self-hosted via `@fontsource-variable/jetbrains-mono`). Skala token `--text-*` dipertahankan.
 
 | Token | Nilai | lh | Peran |
 | --- | --- | --- | --- |
@@ -92,18 +89,15 @@ untuk **seluruh halaman**: teks, label, dan kode Lua.
 | `--text-small` | 13px | 1.5 | Hint, teks footer |
 | `--text-body` | 14px | 1.5 | Teks dasar body, kontrol, tombol, isi textarea/output Lua |
 | `--text-title` | 16px | 1.3 | Judul panel |
-| `--text-brand` | 20px | 1.2 | (tak dipakai; wordmark memakai 28/22px — satu-satunya pengecualian) |
+| `--text-brand` | 20px | 1.2 | Token cadangan; wordmark diatur dengan ukuran responsif tersendiri. |
 
-Satu-satunya pengecualian ukuran: wordmark header 28px (22px <640px),
-bobot 800, `letter-spacing: -0.03em`, highlight marker 40%.
+Wordmark memakai JetBrains Mono tebal dengan highlight marker; ukurannya disesuaikan pada breakpoint di `src/styles/landing.css`.
 Ikon SVG: `stroke-width: 2.5`; logo 26px, tombol tema 24px.
 
 ## 6. Pola komponen
 
-- Header ±80px (±68px mobile): logo stiker 48px (40px mobile) miring
-  `-4deg`, hover `+4deg`; tombol tema 48px persegi sejajar logo;
-  border bawah 4px. Zigzag biru dekoratif di dekat logo (<640px
-  disembunyikan).
+- Header sticky dengan CTA konversi dan tombol tema; logo stiker mengecil di layar sempit dan zigzag disembunyikan pada mobile.
+- Hero produk memakai dua kolom di desktop dan satu kolom pada tablet/mobile; kartu workspace menumpuk saat lebarnya tidak cukup.
 - Kartu: radius 14px, `overflow: visible` (burst boleh keluar), header
   flat pink/kuning teks `#111`/800 + garis `#111`; isi `--surface`
   tanpa border tambahan; textarea tanpa border, fokus outline 3px

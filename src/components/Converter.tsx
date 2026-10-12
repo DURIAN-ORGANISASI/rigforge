@@ -127,8 +127,21 @@ export function Converter() {
 
   return (
     <>
-      <section className="section section--tool" aria-label="Konverter data avatar ke script Lua">
+      <section id="konverter" className="section section--tool" aria-labelledby="workspace-title">
         <div className="container">
+          <div className="workspace-heading">
+            <div className="workspace-heading__copy">
+              <p className="section-kicker">CONVERTER WORKSPACE</p>
+              <h2 id="workspace-title">Konversi avatar</h2>
+              <p id="format-input">
+                Tempel daftar token atau data JSON. Hasil Lua diperbarui otomatis dan siap disalin.
+              </p>
+            </div>
+            <span className="workspace-heading__status">
+              <Icon name="check" size={15} /> Diproses di browser
+            </span>
+          </div>
+
           <div className="bench" ref={benchRef}>
             <div className="bench__seam" aria-hidden="true">
               <Icon name="arrow" />
