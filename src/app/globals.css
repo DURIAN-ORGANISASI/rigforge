@@ -119,8 +119,8 @@
   border-width: 3px;
 }
 
-.sketch-input::placeholder,
-.sketch-textarea::placeholder {
+.relay-app .sketch-input::placeholder,
+.relay-app .sketch-textarea::placeholder {
   color: var(--relay-ink-faint);
 }
 
