@@ -18,7 +18,8 @@
 **Ubah data mentah avatar Roblox menjadi script Lua untuk Roblox Studio.**
 Berjalan di browser Anda. Data yang ditempel tidak pernah melewati server.
 
-[Coba sekarang](https://rigforge-mocha.vercel.app/) ·
+[Buka RigForge](https://rigforge-mocha.vercel.app/) ·
+[Buka Relay (Discord)](https://rigforge-mocha.vercel.app/relay) ·
 [Fitur](#fitur) ·
 [Cara pakai](#cara-pakai) ·
 [Format input](#format-input) ·
@@ -156,7 +157,8 @@ Accessories = {
 ## Batasan yang diketahui
 
 - **Satu avatar per konversi.** Hasil menggantikan isi panel, tidak ditambahkan.
-- **Data tidak disimpan.** Setelah halaman dimuat ulang, panel kembali terisi Contoh Data. Hanya pilihan tema yang diingat.
+- **RigForge tidak menyimpan data konversi.** Setelah halaman dimuat ulang, panel kembali terisi Contoh Data.
+- **Relay menyimpan konfigurasi bot di browser** (`localStorage`) agar token dan slot channel tetap tersedia pada sesi berikutnya.
 - **Hasil tetap perlu diuji** di Roblox Studio sebelum dipakai, terutama untuk data dari sumber yang berbeda-beda.
 - **Tidak ada tombol unduh.** Hasil disalin ke clipboard, lalu ditempel sendiri ke Studio.
 - Alat ini bersifat independen dan **tidak berafiliasi dengan Roblox Corporation**. "Roblox" adalah merek dagang Roblox Corporation, dipakai hanya untuk menjelaskan fungsi alat.
@@ -169,7 +171,7 @@ Prasyarat: **Node.js 22** dan npm.
 git clone https://github.com/akndrn000/rigforge.git
 cd rigforge
 npm install
-npm run dev        # http://localhost:5173
+npm run dev        # http://localhost:3000
 ```
 
 | Perintah | Fungsi |
@@ -202,7 +204,7 @@ docs/                   DESIGN.md (sistem desain), export-assets.py, images/
 
 - **Next.js App Router**, **React**, dan **TypeScript**
 - **CSS biasa** dengan design token, gaya neobrutalism (border tebal, bayangan keras tanpa blur, palet blok cerah)
-- **JetBrains Mono** lewat Fontsource sebagai satu-satunya font
+- **Inter** untuk antarmuka, **Patrick Hand** untuk judul Relay, dan **JetBrains Mono** untuk editor/kode.
 - **Vitest** untuk unit test
 
 Panduan visual ada di [`docs/DESIGN.md`](docs/DESIGN.md).
