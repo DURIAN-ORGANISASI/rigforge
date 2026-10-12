@@ -56,6 +56,10 @@
   flex: none;
 }
 
+.header-cta__mobile {
+  display: none;
+}
+
 .header-cta {
   display: inline-flex;
   min-height: 44px;
