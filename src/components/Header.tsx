@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '../hooks/useTheme'
 import { Icon } from './Icon'
+import { AppSwitcher } from './AppSwitcher'
 
 export function Header() {
   const { theme, toggle } = useTheme()
@@ -37,11 +38,7 @@ export function Header() {
         </a>
 
         <div className="site-header__actions">
-          <a className="header-cta" href="#konverter">
-            <span className="header-cta__desktop">Mulai konversi</span>
-            <span className="header-cta__mobile">Mulai</span>
-            <Icon name="arrow" size={16} />
-          </a>
+          <AppSwitcher target="relay" />
           <button
             type="button"
             role="switch"
