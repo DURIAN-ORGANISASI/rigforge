@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
 import { Inter, Patrick_Hand } from "next/font/google";
 import "@fontsource-variable/jetbrains-mono";
 import "./globals.css";
@@ -66,7 +67,7 @@ function themeInitScript() {
   }catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
 }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html
       lang="id"
