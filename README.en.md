@@ -6,7 +6,8 @@
 
 [![Live demo](https://img.shields.io/badge/demo-rigforge--mocha.vercel.app-ffd60a?style=for-the-badge&labelColor=111111)](https://rigforge-mocha.vercel.app/)
 
-![Vite](https://img.shields.io/badge/Vite-646cff?style=flat-square&logo=vite&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![Relay](https://img.shields.io/badge/Relay-Discord_Tools-5865F2?style=flat-square&logo=discord&logoColor=white)
 ![React](https://img.shields.io/badge/React_19-20232a?style=flat-square&logo=react&logoColor=61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?style=flat-square&logo=typescript&logoColor=white)
 ![Vitest](https://img.shields.io/badge/Vitest-6e9f18?style=flat-square&logo=vitest&logoColor=white)
@@ -31,13 +32,18 @@ Runs in your browser. Pasted data never passes through a server.
 
 ## Overview
 
-Copying avatar IDs into a Lua template by hand is slow and easy to get wrong. RigForge reads raw avatar data (a token list or a JSON blob), arranges it into a fixed Lua template, and shows the result ready to copy.
+RigForge converts raw Roblox avatar data into a Lua script. In the same repository and deployment, Relay provides a Discord messaging workspace powered by an official bot token.
 
 Three principles guide the tool:
 
-- **One page, one tool.** Paste data on the left, copy Lua on the right. No account, no routing, no extra steps.
+- **Two tools, one place.** RigForge stays on the home page (`/`); Relay lives at `/relay`. Use the yellow header button to switch between them.
 - **A consistent template.** Every section has a minimum slot count, so the output always has the same shape and is easy to compare between avatars.
 - **Locked down by tests.** The parser and generator are covered by 74 tests, including 26 snapshot cases, so conversion behavior never changes silently.
+
+## Two workspaces
+
+- **RigForge (`/`)** — converts avatar data into Lua; conversion input stays in the browser.
+- **Relay (`/relay`)** — configure an official Bot Token, test channel access, and send Discord messages. The yellow header button switches between RigForge and Relay.
 
 ## Screenshots
 
@@ -64,6 +70,7 @@ Three principles guide the tool:
 | **Copy code** | Copies the full Lua output to the clipboard in one click. |
 | **Light and dark mode** | Follows the system, can be switched with the header button, and your choice is remembered in the browser. |
 | **Accessible** | Skip-to-content link, ARIA labels, and keyboard focus rings with contrast checked in both modes. |
+| **Relay: Discord** | Official Bot Token configuration, 10 channel slots, connection checks, message sending, code-block mode, and session history. |
 
 ## How to use
 
@@ -75,6 +82,7 @@ Three principles guide the tool:
 4. Click **Generate Paksa** (force generate) to re-run the conversion right away.
 5. **Review** the `Body`, `Clothes`, and `Accessories` sections.
 6. Click **Salin Kode** (copy code), then paste into Roblox Studio.
+7. Use the yellow header button to switch to Relay (`/relay`). Configure the Discord bot there, then use the header button on Relay to return to RigForge.
 
 > [!TIP]
 > Not sure about your data format? Click **Contoh Data** (sample data), look at the input and output shapes, then replace the content with your own.
@@ -140,8 +148,10 @@ Accessories = {
 
 <img src="docs/images/en/privacy.svg" alt="Data is processed in the browser and pasted manually into Roblox Studio, never passing through a RigForge server" width="100%">
 
-- Pasted data is **processed in the browser**. This app's server never receives it.
-- The app uses no analytics or trackers. The only thing stored in `localStorage` is the theme choice (`rl-theme`).
+- **RigForge:** pasted avatar data is processed in the browser; the server never receives conversion input.
+- **Relay:** the bot token and 10 channel slots are stored in the browser's `localStorage`. Connection checks and message sends go through Next.js API Routes (`/api/discord/check` and `/api/discord/send`). The routes forward the token to Discord in an `Authorization: Bot ...` header and do not store it in a database or application logs.
+- User-account/self-bot tokens are not supported; use an official Bot Token from the Discord Developer Portal.
+- The app uses no analytics or trackers.
 - Fonts are self-hosted through Fontsource, with no Google Fonts.
 - `vercel.json` sets security headers: `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, and `Permissions-Policy`.
 
@@ -166,9 +176,9 @@ npm run dev        # http://localhost:5173
 
 | Command | Purpose |
 |---|---|
-| `npm run dev` | Starts the development server. |
-| `npm run build` | Type-checks, then creates a production build in `dist/`. |
-| `npm run preview` | Tries the build locally. |
+| `npm run dev` | Starts Next.js at `http://localhost:3000`. |
+| `npm run build` | Type-checks and creates a Next.js production build. |
+| `npm run start` | Runs the local production build after `npm run build`. |
 | `npm run test` | Runs unit tests (Vitest). |
 | `npm run typecheck` | Checks TypeScript types. |
 
@@ -178,23 +188,21 @@ No environment variables are required.
 
 ```
 src/
-  main.tsx              App entry point
-  App.tsx               Single-page layout: Header + Converter + Footer
-  components/           Converter, Header, Footer, Icon
-  hooks/                useTheme (light/dark theme, stored in localStorage)
-  lib/
-    converter.ts        Parser + Lua generator (the core)
-    converter.test.ts   74 tests: snapshots + universal template behavior
-    __fixtures__/       golden.json (26 snapshot cases)
-    sample.ts           Data for the "Contoh Data" button
-  styles/               tokens.css (color, shape, font), base.css, site.css
+  app/
+    page.tsx                  RigForge home page
+    relay/page.tsx            Relay workspace
+    api/discord/               Discord server-side API routes
+  components/                 RigForge UI + Relay UI + AppSwitcher
+  hooks/                      Theme and bot configuration
+  lib/                        Lua parser and Relay helpers
+  styles/                     RigForge theme and layout
 public/                 favicon, brand.svg, iOS icon, Open Graph image
 docs/                   DESIGN.md (design system), export-assets.py, images/
 ```
 
 ### Tech stack
 
-- **Vite**, **React 19**, and **TypeScript**
+- **Next.js App Router**, **React**, and **TypeScript**
 - **Plain CSS** with design tokens, neobrutalism style (thick borders, hard shadows without blur, bright block palette)
 - **JetBrains Mono** through Fontsource as the only font
 - **Vitest** for unit tests
@@ -210,7 +218,7 @@ npx vercel          # preview
 npx vercel --prod   # production
 ```
 
-Vercel detects Vite automatically. `vercel.json` already sets the build command (`npm run build`), the output folder (`dist`), and security headers. No environment variables need to be set.
+Vercel runs this project as a Next.js app. `vercel.json` sets the framework and security headers. Relay endpoints run as server-side API Routes; no required environment variables are needed for the standard flow.
 
 ## Contributing
 
