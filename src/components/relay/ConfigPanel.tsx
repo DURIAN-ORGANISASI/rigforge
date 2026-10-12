@@ -133,7 +133,7 @@ export function ConfigPanel({ config }: { config: BotConfig }) {
               id="relay-slot-pilih"
               value={String(activeSlotId)}
               onChange={(e) => selectSlot(Number(e.target.value))}
-              className="sketch-input w-full cursor-pointer px-3 py-2 text-sm sm:w-auto sm:min-w-64 [&>option]:bg-[var(--panel)] [&>option]:text-[var(--foreground)]"
+              className="sketch-input w-full cursor-pointer px-3 py-2 text-sm sm:w-auto sm:min-w-64 [&>option]:bg-[var(--relay-panel)] [&>option]:text-[var(--relay-foreground)]"
             >
               {slots.map((slot) => (
                 <option key={slot.id} value={slot.id}>
