@@ -11,7 +11,7 @@ import { ThemeToggle } from "@/components/relay/ThemeToggle";
 import { useBotConfig } from "@/hooks/relay/useBotConfig";
 
 /** Halaman utama Relay: header + status + konfigurasi bot + kirim pesan + footer. */
-export default function Home() {
+export default function RelayWorkspace() {
   const config = useBotConfig();
   const { savedToken, savedChannelId, hasSavedConfig, status, lastCheck, slots, activeSlotId } = config;
   // Isi pesan diangkat ke page agar baris status bisa menampilkan jumlah karakter.
