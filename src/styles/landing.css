@@ -26,10 +26,19 @@ h3 {
 
 /* ---------- Header: restrained, consistent, and touch-friendly ---------- */
 .site-header {
-  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  /* Opaque background prevents page content showing through while sticky. */
+  background: var(--bg);
   border-bottom: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
-  backdrop-filter: blur(16px) saturate(130%);
-  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  isolation: isolate;
+}
+
+/* Anchor navigation must leave room for the sticky header. */
+#konverter,
+#format-input,
+#cara-kerja {
+  scroll-margin-top: 86px;
 }
 
 .site-header__in {
