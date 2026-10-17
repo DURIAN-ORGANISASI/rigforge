@@ -14,7 +14,7 @@ interface StatusStripProps {
 /** Baris status tipis: status bot · slot aktif · panjang pesan. */
 export function StatusStrip({ status, slotText, charCount }: StatusStripProps) {
   return (
-    <p className="sketch break-words px-3 py-1 text-xs leading-5" role="status" aria-live="polite">
+    <p className="relay-status-strip break-words text-xs leading-5" role="status" aria-live="polite">
       <span className="font-bold" aria-hidden="true">
         ❯
       </span>{" "}
