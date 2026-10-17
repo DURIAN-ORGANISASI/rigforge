@@ -57,14 +57,19 @@ export const viewport: Viewport = {
 };
 
 function themeInitScript() {
-  // Set kedua tema sebelum paint pertama; keduanya menggunakan storage key terpisah.
+  // One shared preference keeps RigForge and Relay visually identical on first paint.
   return `(function(){try{
     var t=localStorage.getItem("rl-theme");
-    if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}
+    if(t!=="light"&&t!=="dark"){
+      var r=localStorage.getItem("relay-theme");
+      if(r==="gelap")t="dark";
+      else if(r==="terang")t="light";
+      else t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+    }
     document.documentElement.setAttribute("data-theme",t);
-    var r=localStorage.getItem("relay-theme");
-    if(r==="gelap"||(r!=="terang"&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark");}
-    else{document.documentElement.classList.remove("dark");}
+    document.documentElement.classList.toggle("dark",t==="dark");
+    localStorage.setItem("rl-theme",t);
+    localStorage.setItem("relay-theme",t==="dark"?"gelap":"terang");
   }catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
 }
 
