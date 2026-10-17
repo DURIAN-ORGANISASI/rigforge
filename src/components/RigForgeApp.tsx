@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Converter } from "@/components/Converter";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { HowItWorks, LandingHero } from "@/components/Landing";
+import { LandingHero } from "@/components/Landing";
 
 export default function RigForgeApp() {
   const mainRef = useRef<HTMLElement>(null);
@@ -25,7 +25,6 @@ export default function RigForgeApp() {
       <main id="konten" ref={mainRef} tabIndex={-1}>
         <LandingHero />
         <Converter />
-        <HowItWorks />
       </main>
       <Footer />
     </div>
