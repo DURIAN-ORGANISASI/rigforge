@@ -1,173 +1,123 @@
 <div align="center">
 
-<img src="docs/images/banner.svg" alt="RigForge: konverter avatar Roblox ke script Lua" width="100%">
+<img src="docs/images/banner.svg" alt="RigForge — konverter data avatar Roblox menjadi script Lua" width="100%">
 
-<br>
+<p><strong>Ubah data avatar Roblox menjadi script Lua yang siap ditinjau dan disalin ke Roblox Studio.</strong><br>
+Konversi berjalan di browser; data avatar yang ditempel tidak dikirim ke server RigForge.</p>
 
-[![Live demo](https://img.shields.io/badge/demo-rigforge--mocha.vercel.app-ffd60a?style=for-the-badge&labelColor=111111)](https://rigforge-mocha.vercel.app/)
+<p>
+  <a href="https://rigforge-mocha.vercel.app/"><img src="https://img.shields.io/badge/Buka_RigForge-demo-6C63FF?style=for-the-badge&labelColor=111827" alt="Buka demo RigForge"></a>
+  <a href="https://rigforge-mocha.vercel.app/relay"><img src="https://img.shields.io/badge/Buka_Relay-Discord-5865F2?style=for-the-badge&labelColor=111827" alt="Buka Relay"></a>
+  <a href="README.en.md"><img src="https://img.shields.io/badge/Read_in-English-38BDF8?style=for-the-badge&labelColor=111827" alt="Read in English"></a>
+</p>
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
-![Relay](https://img.shields.io/badge/Relay-Discord_Tools-5865F2?style=flat-square&logo=discord&logoColor=white)
-![React](https://img.shields.io/badge/React_19-20232a?style=flat-square&logo=react&logoColor=61dafb)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?style=flat-square&logo=typescript&logoColor=white)
-![Vitest](https://img.shields.io/badge/Vitest-6e9f18?style=flat-square&logo=vitest&logoColor=white)
-![Deploy](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
-
-[Bahasa Indonesia](README.md) · [English](README.en.md)
-
-**Ubah data mentah avatar Roblox menjadi script Lua untuk Roblox Studio.**
-Berjalan di browser Anda. Data yang ditempel tidak pernah melewati server.
-
-[Buka RigForge](https://rigforge-mocha.vercel.app/) ·
-[Buka Relay (Discord)](https://rigforge-mocha.vercel.app/relay) ·
-[Fitur](#fitur) ·
-[Cara pakai](#cara-pakai) ·
-[Format input](#format-input) ·
-[Privasi](#privasi-dan-keamanan) ·
-[Pengembangan](#pengembangan-lokal) ·
-[Kontribusi](#kontribusi)
+<p>
+  <img src="https://img.shields.io/badge/Next.js-App_Router-111827?logo=nextdotjs" alt="Next.js">
+  <img src="https://img.shields.io/badge/React-19-087EA4?logo=react" alt="React">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Tests-Vitest-6E9F18?logo=vitest&logoColor=white" alt="Vitest">
+  <img src="https://img.shields.io/badge/Deploy-Vercel-111827?logo=vercel" alt="Vercel">
+</p>
 
 </div>
 
 ---
 
-## Ringkasan
+## ✦ Apa itu RigForge?
 
-RigForge mengubah data mentah avatar Roblox menjadi script Lua. Dalam repo dan deployment yang sama, Relay menyediakan workspace pengiriman pesan Discord melalui Bot Token resmi.
+RigForge adalah alat web untuk mengubah data mentah avatar Roblox menjadi struktur script Lua yang dapat digunakan sebagai titik awal di Roblox Studio. Tempel data, tinjau hasil konversi, lalu salin kode.
 
-Ada tiga hal yang menjadi pegangan alat ini:
+Dalam repo dan deployment yang sama tersedia **Relay**, workspace terpisah untuk menguji akses channel dan mengirim pesan Discord menggunakan Bot Token resmi.
 
-- **Dua alat, satu tempat.** RigForge tetap ada di halaman utama (`/`); Relay tersedia di `/relay`. Gunakan ikon zigzag biru di samping nama aplikasi untuk berpindah workspace.
-- **Template yang konsisten.** Setiap bagian punya jumlah slot minimum, jadi bentuk output selalu sama dan mudah dibandingkan antar avatar.
-- **Terkunci oleh tes.** Parser dan generator dijaga 74 tes, termasuk 26 kasus snapshot, supaya perilaku konversi tidak berubah diam-diam.
+| Workspace | Fungsi |
+| --- | --- |
+| **RigForge — `/`** | Membaca token avatar dan data `AccessoryBlob`, lalu menghasilkan struktur Lua. |
+| **Relay — `/relay`** | Menyimpan konfigurasi bot di browser, menguji akses channel, dan meneruskan pengiriman pesan ke Discord melalui API Route. |
 
-## Dua workspace dalam satu aplikasi
+## Fitur utama
 
-- **RigForge (`/`)** — konversi data avatar Roblox ke script Lua; semua input konversi diproses lokal di browser.
-- **Relay (`/relay`)** — konfigurasi Bot Token resmi, uji akses channel, dan kirim pesan Discord.
+- **Konversi otomatis** — hasil Lua diperbarui saat input berubah; tersedia juga tombol Generate Paksa.
+- **Dua format input** — token seperti `Head: 123` dan JSON setelah `AccessoryBlob Data:` dapat digunakan bersama.
+- **Template konsisten** — setiap kelompok memiliki jumlah slot minimum; slot yang belum terisi memakai `AssetId = 0`, dan ID tambahan membuat baris baru.
+- **Pembersihan duplikat** — ID yang sama dalam bagian yang sama ditulis satu kali.
+- **Salin ke clipboard** — salin seluruh hasil lalu tempel manual ke Roblox Studio.
+- **Tema terang/gelap** — mengikuti preferensi sistem atau dapat diganti dari antarmuka.
+- **Relay untuk Discord** — konfigurasi Bot Token resmi, sampai 10 slot channel, pemeriksaan akses, pengiriman pesan, dan riwayat sesi.
 
-Kedua workspace berada di **repo, dependency graph, dan deployment Next.js yang sama**. Seluruh kode Relay yang diperlukan untuk berjalan sudah terintegrasi di `src/components/relay/`, `src/hooks/relay/`, `src/lib/relay/`, serta API server-side `src/app/api/discord/`. Tidak perlu menarik source dari repo Relay terpisah saat build atau deploy. Repo `akndrn000/relay` tetap tidak dihapus agar source standalone lama tetap tersedia sebagai cadangan.
-
-Gunakan ikon zigzag biru di samping nama/judul workspace untuk berpindah seluruh halaman: RigForge → Relay, dan Relay → RigForge. Ikon tetap kecil, bisa diakses dengan keyboard, serta memiliki label aksesibilitas.
-
-## Tampilan
+## Tampilan aplikasi
 
 <table>
   <tr>
-    <td width="50%" align="center"><img src="docs/images/preview-dark.png" alt="Pratinjau RigForge mode malam"><br><sub>Mode malam</sub></td>
-    <td width="50%" align="center"><img src="docs/images/preview-light.png" alt="Pratinjau RigForge mode siang"><br><sub>Mode siang</sub></td>
+    <td width="50%" align="center"><img src="docs/images/preview-dark.png" alt="Tampilan RigForge dalam mode gelap" width="100%"><sub>Mode gelap</sub></td>
+    <td width="50%" align="center"><img src="docs/images/preview-light.png" alt="Tampilan RigForge dalam mode terang" width="100%"><sub>Mode terang</sub></td>
   </tr>
 </table>
 
-<sub>Pratinjau antarmuka dengan Contoh Data bawaan. ID pada gambar hanya contoh.</sub>
+## Cara menggunakan
 
-## Fitur
+<img src="docs/images/workflow.svg" alt="Empat tahap: tempel data, konversi, tinjau output, lalu salin ke Roblox Studio" width="100%">
 
-| | |
-|---|---|
-| **Konversi otomatis** | Hasil Lua muncul saat data berubah, dengan jeda singkat (sekitar 0,2 detik) supaya tempel data besar tidak menahan halaman. |
-| **Dua cara input** | Daftar token (`Head: 123`) atau blob JSON setelah `AccessoryBlob Data:`. Keduanya bisa dipakai bersamaan. |
-| **Template universal** | Jumlah slot minimum per bagian. ID mengisi dari atas, sisa slot tetap `AssetId = 0`, dan baris baru ditambahkan bila ID melebihi slot. |
-| **Parser yang toleran** | Token tidak peka huruf besar-kecil. Mengenali `DynamicHead` dan variasi penulisan `TShirt` (`T-Shirt`, `Tshirt`). |
-| **Tanpa duplikat** | ID identik dalam satu bagian hanya ditulis sekali. |
-| **Contoh Data dan Reset** | Halaman langsung terisi data contoh. Satu klik untuk memuat ulang, satu klik untuk mengosongkan. |
-| **Generate Paksa** | Menjalankan ulang konversi seketika, tanpa menunggu jeda. |
-| **Salin Kode** | Menyalin seluruh hasil Lua ke clipboard dengan satu klik. |
-| **Mode siang dan malam** | Mengikuti sistem, bisa diganti manual lewat tombol di header, dan pilihan tersimpan di browser. |
-| **Aksesibel** | Tautan lewati ke konten, label ARIA, dan cincin fokus keyboard yang kontrasnya diperiksa di kedua mode. |
-| **Relay: Discord** | Konfigurasi Bot Token resmi, 10 slot channel, uji koneksi, pengiriman pesan, mode code block, dan riwayat sesi. |
+1. Buka [RigForge](https://rigforge-mocha.vercel.app/). Contoh Data dimuat secara otomatis.
+2. Tempel data avatar ke panel **Data mentah**. Tekan **Reset** terlebih dahulu bila ingin memulai dari input kosong.
+3. Periksa hasil pada panel **Hasil Lua**. Konversi berjalan otomatis ketika input berubah.
+4. Gunakan **Generate Paksa** untuk menjalankan ulang konversi tanpa menunggu jeda.
+5. Tinjau bagian tubuh, pakaian, dan aksesori, lalu pilih **Salin Kode**.
+6. Tempel kode ke Roblox Studio dan uji sebelum digunakan.
 
-## Cara pakai
-
-<img src="docs/images/workflow.svg" alt="Alur kerja RigForge: tempel, konversi, tinjau, salin" width="100%">
-
-1. **Buka** [rigforge-mocha.vercel.app](https://rigforge-mocha.vercel.app/). Halaman langsung terisi Contoh Data dan hasilnya sudah tampil.
-2. **Tempel** data mentah avatar di panel **Data mentah**. Klik **Reset** dulu bila ingin mulai dari kosong.
-3. **Lihat hasilnya** di panel **Hasil Lua**. Konversi berjalan otomatis setiap data berubah.
-4. Klik **Generate Paksa** bila ingin menjalankan ulang konversi saat itu juga.
-5. **Tinjau** bagian `Body`, `Clothes`, dan `Accessories` pada hasil.
-6. Klik **Salin Kode**, lalu tempel ke Roblox Studio.
-7. Klik ikon zigzag biru di samping nama RigForge untuk membuka Relay (`/relay`). Di sana Anda dapat mengonfigurasi bot Discord dan mengirim pesan. Ikon di samping judul Relay membawa Anda kembali ke RigForge.
-
-> [!TIP]
-> Tidak yakin dengan format data Anda? Klik **Contoh Data**, lihat bentuk input dan outputnya, lalu ganti isinya dengan data Anda.
+Untuk membuka Relay, gunakan ikon zigzag biru di dekat nama workspace. Relay dan RigForge berada dalam aplikasi dan deployment yang sama.
 
 ## Format input
 
-Parser mencari token di mana pun dalam teks, tidak peka huruf besar-kecil. Token boleh berada di baris terpisah.
+Parser mencari token di seluruh teks dan tidak membedakan huruf besar/kecil.
 
-| Bagian | Token | Catatan |
-|---|---|---|
-| **Tubuh** | `Head`, `Torso`, `LeftArm`, `RightArm`, `LeftLeg`, `RightLeg` | Satu ID per token. Bila `DynamicHead` ada, nilainya dipakai menggantikan `Head`. |
-| **Pakaian klasik** | `Pants`, `Shirt`, `TShirt` | Satu ID per token. `TShirt` juga dikenali sebagai `T-Shirt` dan `Tshirt`. |
-| **Warna kulit** | `Body Color: 242,215,205 (#F2D7CD)` | Kode hex dalam kurung dipakai lebih dulu. Tanpa hex, teks setelah `Body Color:` dipakai. Tanpa keduanya, nilainya `Pastel orange`. |
-| **Aksesori** | `Hat`, `HairAccessory`, `FaceAccessory`, `FrontAccessory`, `NeckAccessory`, `BackAccessory`, `ShoulderAccessory`, `WaistAccessory` | Daftar ID dipisah koma. |
-| **Blob** | `AccessoryBlob Data:` diikuti array JSON | Tiap item memakai `AccessoryType` dan `AssetId`. Tipe pakaian berlapis dan aksesori masuk ke bagian yang sesuai. |
+| Data | Contoh token | Catatan |
+| --- | --- | --- |
+| Tubuh | `Head`, `Torso`, `LeftArm`, `RightArm`, `LeftLeg`, `RightLeg` | Satu ID per token. `DynamicHead` menggantikan nilai `Head` bila tersedia. |
+| Pakaian klasik | `Pants`, `Shirt`, `TShirt` | Variasi `T-Shirt` dan `Tshirt` juga dikenali. |
+| Warna kulit | `Body Color: 242,215,205 (#F2D7CD)` | Kode hex di dalam tanda kurung diprioritaskan; default-nya `Pastel orange`. |
+| Aksesori | `Hat`, `HairAccessory`, `FaceAccessory`, `FrontAccessory`, `NeckAccessory`, `BackAccessory`, `ShoulderAccessory`, `WaistAccessory` | Beberapa ID dapat dipisahkan dengan koma. |
+| AccessoryBlob | `AccessoryBlob Data:` diikuti array JSON | Item memakai properti `AccessoryType` dan `AssetId`; item ditempatkan ke kelompok yang sesuai. |
 
-Urutan ID dalam satu bagian: daftar token lebih dulu, lalu item dari blob.
+Jika sebuah kategori muncul dalam token dan blob, ID token diproses terlebih dahulu, lalu item dari blob. JSON blob yang tidak valid diabaikan; kesalahannya dicatat di konsol browser, sementara input lainnya tetap diproses.
 
-> [!NOTE]
-> Bila JSON pada blob tidak valid, blob diabaikan dan galatnya dicatat di konsol browser. Sisa data tetap dikonversi.
+## Template slot universal
 
-## Template universal
+Jumlah slot minimum ditetapkan di `LAYERED_GROUPS` dan `ACCESSORY_GROUPS` pada `src/lib/converter.ts`.
 
-Setiap bagian punya jumlah slot minimum. Daftar lengkapnya ada di `LAYERED_GROUPS` dan `ACCESSORY_GROUPS` pada `src/lib/converter.ts`.
+<img src="docs/images/slot-template.svg" alt="Ilustrasi slot minimum, AssetId nol untuk slot kosong, dan baris tambahan saat ID melebihi slot" width="100%">
 
-| Kelompok | Bagian dan slot minimum |
-|---|---|
+| Kelompok | Slot minimum |
+| --- | --- |
 | `Clothes.Layered` | `LeftShoe` 2, `RightShoe` 2, `TShirt` 3, `Shirt` 3, `Pants` 3, `Shorts` 3, `DressSkirt` 3, `Sweater` 3, `Jacket` 4 |
 | `Accessories` | `Hat` 3, `Hair` 3, `Face` 7, `Front` 3, `Neck` 3, `Back` 3, `Shoulder` 3, `Waist` 3 |
 
-<img src="docs/images/slot-template.svg" alt="Cara slot terisi: ID mengisi dari atas, sisa slot AssetId = 0, ID berlebih menambah baris" width="100%">
+- ID mengisi slot dari atas; slot kosong tetap bernilai `AssetId = 0`.
+- ID berlebih menambah baris di kelompok yang sama.
+- Jenis aksesori yang belum tercantum mendapat bagian baru di akhir `Accessories`.
+- ID duplikat dalam satu kelompok hanya ditulis sekali.
+- Input kosong akan mengosongkan panel hasil.
 
-| Situasi | Perilaku |
-|---|---|
-| ID lebih sedikit dari slot | ID mengisi slot dari atas ke bawah. Sisa slot tetap `AssetId = 0`. |
-| ID melebihi jumlah slot | Baris baru ditambahkan **di bagian yang sama**. |
-| Tipe aksesori tidak ada di template | Dibuatkan **bagian baru** di akhir `Accessories`. |
-| ID identik dalam satu bagian | Hanya ditulis **sekali**. |
-| Input kosong | Panel hasil dikosongkan. |
-
-Potongan hasil nyata dari Contoh Data (`FaceAccessory` berisi dua ID, lima slot sisanya tetap nol):
-
-```lua
-Accessories = {
-	-- ...
-	{ AssetId = 90044197280959, AccessoryType = "Face" },
-	{ AssetId = 15873662828, AccessoryType = "Face" },
-	{ AssetId = 0, AccessoryType = "Face" },
-	{ AssetId = 0, AccessoryType = "Face" },
-	{ AssetId = 0, AccessoryType = "Face" },
-	{ AssetId = 0, AccessoryType = "Face" },
-	{ AssetId = 0, AccessoryType = "Face" },
-	-- ...
-},
-```
-
-> [!IMPORTANT]
-> Nilai `Scaling` (semuanya `0`), `Face = 0`, `UserId = 0`, dan warna kulit bawaan `Pastel orange` ditulis tetap di `converter.ts`. Bila Anda mengubahnya, perbarui juga `src/lib/__fixtures__/golden.json` karena output snapshot ikut berubah.
+Nilai seperti `Scaling`, `Face`, `UserId`, dan warna kulit default ditetapkan di converter. Jika mengubahnya, perbarui fixture snapshot di `src/lib/__fixtures__/golden.json` juga.
 
 ## Privasi dan keamanan
 
-<img src="docs/images/privacy.svg" alt="Data diproses di browser dan ditempel manual ke Roblox Studio, tanpa melewati server RigForge" width="100%">
+<img src="docs/images/privacy.svg" alt="Diagram perbedaan jalur data RigForge dan Relay" width="100%">
 
-- **RigForge:** data avatar yang ditempel diproses di browser; server tidak menerima input konversi.
-- **Relay:** Bot Token dan 10 slot channel disimpan di `localStorage` browser. Request uji dan pengiriman pesan diteruskan melalui API Route Next.js (`/api/discord/check` dan `/api/discord/send`). Route meneruskan token ke Discord sebagai header `Authorization: Bot ...` dan tidak menyimpannya ke database atau log aplikasi.
-- Tidak perlu token akun pribadi/self-bot. Gunakan Bot Token resmi dari Discord Developer Portal.
-- Aplikasi tidak memakai analytics maupun pelacak.
-- Font di-host sendiri lewat Fontsource, tanpa Google Fonts.
-- `vercel.json` menetapkan header keamanan: `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, dan `Permissions-Policy`.
+- **RigForge:** data avatar yang ditempel diproses di browser; input konversi tidak dikirim ke server.
+- **Relay:** konfigurasi bot dan 10 slot channel disimpan di `localStorage` browser. Pemeriksaan channel dan pengiriman pesan melewati Next.js API Route, lalu diteruskan ke Discord. Token tidak disimpan ke database atau log aplikasi.
+- Gunakan Bot Token resmi dari Discord Developer Portal; token akun pribadi atau self-bot tidak didukung.
+- Aplikasi tidak menggunakan analytics atau pelacak. Font di-host sendiri melalui Fontsource.
+- `vercel.json` menetapkan header keamanan, termasuk `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, dan `Permissions-Policy`.
 
-## Batasan yang diketahui
+## Batasan yang perlu diketahui
 
-- **Satu avatar per konversi.** Hasil menggantikan isi panel, tidak ditambahkan.
-- **RigForge tidak menyimpan data konversi.** Setelah halaman dimuat ulang, panel kembali terisi Contoh Data.
-- **Relay menyimpan konfigurasi bot di browser** (`localStorage`) agar token dan slot channel tetap tersedia pada sesi berikutnya.
-- **Hasil tetap perlu diuji** di Roblox Studio sebelum dipakai, terutama untuk data dari sumber yang berbeda-beda.
-- **Tidak ada tombol unduh.** Hasil disalin ke clipboard, lalu ditempel sendiri ke Studio.
-- Alat ini bersifat independen dan **tidak berafiliasi dengan Roblox Corporation**. "Roblox" adalah merek dagang Roblox Corporation, dipakai hanya untuk menjelaskan fungsi alat.
+- Satu avatar diproses dalam satu waktu; hasil baru menggantikan isi panel sebelumnya.
+- Input konversi tidak disimpan. Setelah halaman dimuat ulang, Contoh Data dimuat kembali.
+- Tidak tersedia tombol unduh; hasil disalin ke clipboard lalu ditempel manual ke Studio.
+- Selalu tinjau dan uji hasil di Roblox Studio, terutama untuk data dari sumber yang berbeda.
+- RigForge adalah proyek independen dan tidak berafiliasi dengan Roblox Corporation.
 
-## Pengembangan lokal
+## Jalankan secara lokal
 
 Prasyarat: **Node.js 22** dan npm.
 
@@ -175,58 +125,41 @@ Prasyarat: **Node.js 22** dan npm.
 git clone https://github.com/akndrn000/rigforge.git
 cd rigforge
 npm install
-npm run dev        # http://localhost:3000
+npm run dev
 ```
 
-| Perintah | Fungsi |
-|---|---|
-| `npm run dev` | Menjalankan Next.js pada `http://localhost:3000`. |
-| `npm run build` | Memeriksa dan membuat build produksi Next.js. |
-| `npm run start` | Menjalankan build produksi lokal setelah `npm run build`. |
-| `npm run test` | Menjalankan unit test (Vitest). |
+Buka `http://localhost:3000`. Untuk pemeriksaan sebelum kontribusi:
+
+| Perintah | Tujuan |
+| --- | --- |
+| `npm run dev` | Server pengembangan Next.js. |
+| `npm run test` | Menjalankan unit test Vitest. |
 | `npm run typecheck` | Memeriksa tipe TypeScript. |
+| `npm run build` | Membuat build produksi. |
+| `npm run start` | Menjalankan build produksi lokal. |
 
-Tidak ada environment variable yang dibutuhkan.
+Tidak ada environment variable wajib untuk penggunaan standar.
 
-### Struktur folder
+### Teknologi
 
-```
-src/
-  app/
-    page.tsx                  Halaman utama RigForge
-    relay/page.tsx            Workspace Relay
-    api/discord/               Endpoint server-side Discord
-  components/                 UI RigForge + Relay + AppSwitcher
-  hooks/                      Tema dan konfigurasi bot
-  lib/                        Parser Lua dan helper Relay
-  styles/                     Tema dan layout RigForge
-public/                 favicon, brand.svg, ikon iOS, gambar Open Graph
-docs/                   DESIGN.md (sistem desain), export-assets.py, images/
-```
+Next.js App Router · React · TypeScript · CSS dengan design token · Vitest.
 
-### Tech stack
-
-- **Next.js App Router**, **React**, dan **TypeScript**
-- **CSS biasa** dengan design token, gaya neobrutalism (border tebal, bayangan keras tanpa blur, palet blok cerah)
-- **Inter** untuk antarmuka, **Patrick Hand** untuk judul Relay, dan **JetBrains Mono** untuk editor/kode.
-- **Vitest** untuk unit test
-
-Panduan visual ada di [`docs/DESIGN.md`](docs/DESIGN.md).
+Struktur penting: `src/app/` berisi halaman dan API Route, `src/components/` berisi antarmuka, dan `src/lib/` berisi parser serta helper. Panduan visual tersedia di [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Deploy ke Vercel
 
-Hubungkan repo ini ke Vercel Dashboard, atau deploy dari terminal:
+Hubungkan repo ini ke Vercel Dashboard, atau jalankan:
 
 ```bash
-npx vercel          # pratinjau
-npx vercel --prod   # produksi
+npx vercel          # preview
+npx vercel --prod   # production
 ```
 
-Vercel menjalankan aplikasi sebagai Next.js. `vercel.json` mengatur framework dan header keamanan. Endpoint Relay berjalan sebagai API Route server-side; tidak ada environment variable wajib untuk penggunaan standar.
+Aplikasi berjalan sebagai Next.js. Endpoint Relay menggunakan API Route server-side; variabel lingkungan tidak wajib untuk alur standar.
 
 ## Kontribusi
 
-Masukan dan perbaikan sangat diterima. Sebelum membuka pull request, jalankan `npm run test` dan `npm run build` sampai lulus. Bila perubahan Anda memengaruhi output Lua, perbarui `golden.json` dan jelaskan alasannya di deskripsi PR.
+Saran dan perbaikan dipersilakan. Sebelum membuat pull request, jalankan `npm run test` dan `npm run build`. Jika output Lua berubah, perbarui `golden.json` dan jelaskan alasannya.
 
 ## Lisensi
 
@@ -234,6 +167,4 @@ Dirilis di bawah [Lisensi MIT](LICENSE).
 
 ---
 
-<div align="center">
-<sub>RigForge. Alat independen untuk avatar Roblox. Diproses lokal di browser.</sub>
-</div>
+<div align="center"><sub>RigForge · alat independen untuk avatar Roblox · konversi avatar diproses lokal di browser.</sub></div>
