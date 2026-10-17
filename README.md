@@ -37,14 +37,18 @@ RigForge mengubah data mentah avatar Roblox menjadi script Lua. Dalam repo dan d
 
 Ada tiga hal yang menjadi pegangan alat ini:
 
-- **Dua alat, satu tempat.** RigForge tetap ada di halaman utama (`/`); Relay tersedia di `/relay`. Gunakan tombol kuning di header untuk berpindah halaman.
+- **Dua alat, satu tempat.** RigForge tetap ada di halaman utama (`/`); Relay tersedia di `/relay`. Gunakan ikon zigzag biru di samping nama aplikasi untuk berpindah workspace.
 - **Template yang konsisten.** Setiap bagian punya jumlah slot minimum, jadi bentuk output selalu sama dan mudah dibandingkan antar avatar.
 - **Terkunci oleh tes.** Parser dan generator dijaga 74 tes, termasuk 26 kasus snapshot, supaya perilaku konversi tidak berubah diam-diam.
 
-## Dua workspace
+## Dua workspace dalam satu aplikasi
 
 - **RigForge (`/`)** — konversi data avatar Roblox ke script Lua; semua input konversi diproses lokal di browser.
-- **Relay (`/relay`)** — konfigurasi Bot Token resmi, uji akses channel, dan kirim pesan Discord. Tombol kuning di header berpindah antara RigForge dan Relay.
+- **Relay (`/relay`)** — konfigurasi Bot Token resmi, uji akses channel, dan kirim pesan Discord.
+
+Kedua workspace berada di **repo, dependency graph, dan deployment Next.js yang sama**. Seluruh kode Relay yang diperlukan untuk berjalan sudah terintegrasi di `src/components/relay/`, `src/hooks/relay/`, `src/lib/relay/`, serta API server-side `src/app/api/discord/`. Tidak perlu menarik source dari repo Relay terpisah saat build atau deploy. Repo `akndrn000/relay` tetap tidak dihapus agar source standalone lama tetap tersedia sebagai cadangan.
+
+Gunakan ikon zigzag biru di samping nama/judul workspace untuk berpindah seluruh halaman: RigForge → Relay, dan Relay → RigForge. Ikon tetap kecil, bisa diakses dengan keyboard, serta memiliki label aksesibilitas.
 
 ## Tampilan
 
@@ -83,7 +87,7 @@ Ada tiga hal yang menjadi pegangan alat ini:
 4. Klik **Generate Paksa** bila ingin menjalankan ulang konversi saat itu juga.
 5. **Tinjau** bagian `Body`, `Clothes`, dan `Accessories` pada hasil.
 6. Klik **Salin Kode**, lalu tempel ke Roblox Studio.
-7. Gunakan tombol kuning di header untuk pindah ke Relay (`/relay`). Di sana Anda dapat mengonfigurasi bot Discord dan mengirim pesan. Tombol pada header Relay kembali ke RigForge.
+7. Klik ikon zigzag biru di samping nama RigForge untuk membuka Relay (`/relay`). Di sana Anda dapat mengonfigurasi bot Discord dan mengirim pesan. Ikon di samping judul Relay membawa Anda kembali ke RigForge.
 
 > [!TIP]
 > Tidak yakin dengan format data Anda? Klik **Contoh Data**, lihat bentuk input dan outputnya, lalu ganti isinya dengan data Anda.
