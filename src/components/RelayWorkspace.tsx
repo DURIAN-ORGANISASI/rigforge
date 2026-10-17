@@ -47,7 +47,10 @@ export default function RelayWorkspace() {
             </svg>
           </span>
           <div>
-            <h1 className="font-hand text-6xl leading-none">Relay</h1>
+            <div className="flex items-center gap-3">
+              <h1 className="font-hand text-6xl leading-none">Relay</h1>
+              <AppSwitcher target="rigforge" />
+            </div>
             <p className="mt-2 max-w-md text-sm leading-6 opacity-80">
               Web tools untuk mengirim pesan ke channel Discord lewat Bot Discord
               resmi — bukan self-bot, bukan token akun pribadi.
@@ -55,7 +58,6 @@ export default function RelayWorkspace() {
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <AppSwitcher target="rigforge" />
           <ThemeToggle />
         </div>
       </header>
