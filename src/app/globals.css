@@ -1103,3 +1103,34 @@
   .relay-hero__visual-note { right:5px; font-size:9px; }
   .relay-workspace-heading { display:block; }
 }
+
+
+/* Half-window parity: use the exact same container geometry and breakpoints as RigForge. */
+.relay-site-header__inner,
+.relay-page-shell {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-left: max(36px, env(safe-area-inset-left, 0px));
+  padding-right: max(36px, env(safe-area-inset-right, 0px));
+}
+.relay-workspace-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 22px;
+}
+/* RigForge stacks its tool panels under 1120px. Relay must switch at the same width. */
+@media (max-width: 1120px) {
+  .relay-workspace-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+}
+@media (max-width: 639px) {
+  .relay-site-header__inner,
+  .relay-page-shell {
+    padding-left: max(12px, env(safe-area-inset-left, 0px));
+    padding-right: max(12px, env(safe-area-inset-right, 0px));
+  }
+}
