@@ -67,6 +67,7 @@
   width: 44px;
   height: 18px;
   overflow: visible;
+  animation: zig-sway 3s ease-in-out infinite alternate;
 }
 .app-switcher-icon:hover {
   transform: translateY(-2px) scale(1.04);
