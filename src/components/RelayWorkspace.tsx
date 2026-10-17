@@ -26,7 +26,7 @@ export default function RelayWorkspace() {
     <div className="relay-app min-h-screen">
     <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-6 px-6 py-10">
       {/* Kepala halaman */}
-      <header className="flex items-start justify-between gap-4">
+      <header className="flex flex-wrap items-start justify-between gap-4">
         <div className="flex items-start gap-3">
           <span
             className="sketch flex h-12 w-12 shrink-0 items-center justify-center"
