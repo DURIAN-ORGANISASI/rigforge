@@ -81,17 +81,15 @@ export function ConfigPanel({ config }: { config: BotConfig }) {
   const activeDraftLabel = draft.label.trim() || `Slot ${activeSlotId}`;
 
   return (
-    <section className="sketch-panel p-6" aria-labelledby="judul-konfigurasi">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 id="judul-konfigurasi" className="font-hand text-3xl">
-          Konfigurasi Bot
-        </h2>
+    <section className="pane pane--input relay-functional-pane" aria-labelledby="judul-konfigurasi">
+      <div className="pane__head">
+        <h2 id="judul-konfigurasi" className="pane__title"><span>Konfigurasi Bot</span></h2>
         <span className="sketch sketch-badge" role="status">
           {STATUS_LABEL[status]}
         </span>
       </div>
 
-      <div className="mt-4 flex flex-col gap-4">
+      <div className="relay-functional-body mt-4 flex flex-col gap-4">
         {/* Bot Token — tetap satu, bukan multi-slot */}
         <div>
           <label htmlFor="relay-token" className="mb-1 block text-sm font-semibold">

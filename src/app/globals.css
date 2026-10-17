@@ -1134,3 +1134,231 @@
     padding-right: max(12px, env(safe-area-inset-right, 0px));
   }
 }
+
+
+/* === Typography and geometry parity: reuse RigForge tokens/classes. === */
+.relay-app {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--text-body);
+  line-height: var(--text-body-lh);
+}
+.relay-app .font-hand {
+  font-family: var(--font-mono), ui-monospace, monospace !important;
+}
+.relay-app .text-xs,
+.relay-app [class~="text-[11px]"] {
+  font-size: var(--text-meta) !important;
+  line-height: var(--text-meta-lh) !important;
+}
+.relay-app .text-sm {
+  font-size: var(--text-body) !important;
+  line-height: var(--text-body-lh) !important;
+}
+.relay-app .leading-5 {
+  line-height: var(--text-meta-lh) !important;
+}
+.relay-app .leading-6 {
+  line-height: var(--text-body-lh) !important;
+}
+.relay-app input,
+.relay-app select,
+.relay-app textarea,
+.relay-app button {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+.relay-app .relay-status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  margin: 0 0 18px;
+  padding: 7px 12px;
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--text-meta);
+  line-height: var(--text-meta-lh);
+}
+.relay-app .relay-status-strip .font-bold,
+.relay-app .relay-status-strip .font-semibold {
+  font-size: inherit;
+}
+.relay-app .relay-bench {
+  height: auto;
+  align-items: stretch;
+}
+.relay-app .relay-bench > .relay-functional-pane {
+  height: auto;
+  min-height: clamp(480px, 64dvh, 640px);
+  padding: 0 !important;
+  overflow: visible;
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+[data-theme="dark"] .relay-app .relay-bench > .pane--input {
+  box-shadow: 6px 6px 0 var(--c-pink);
+}
+[data-theme="dark"] .relay-app .relay-bench > .pane--output {
+  box-shadow: 6px 6px 0 var(--c-yellow);
+}
+.relay-app .relay-functional-pane > .pane__head {
+  display: flex;
+  min-height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0;
+  padding: 12px 16px;
+  border-bottom: var(--bw) solid var(--c-black);
+  border-radius: calc(var(--radius-card) - var(--bw)) calc(var(--radius-card) - var(--bw)) 0 0;
+  color: var(--c-black);
+}
+.relay-app .pane--input > .pane__head { background: var(--c-pink); }
+.relay-app .pane--output > .pane__head { background: var(--c-yellow); }
+.relay-app .relay-functional-pane .pane__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-mono);
+  font-size: var(--text-title);
+  font-weight: 800;
+  line-height: var(--text-title-lh);
+  letter-spacing: -.015em;
+}
+.relay-app .relay-functional-pane .pane__title span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.relay-app .relay-functional-pane .sketch-badge {
+  padding: 4px 10px;
+  border: 1px solid var(--c-black);
+  border-radius: var(--radius-badge);
+  background: #fff;
+  color: var(--c-black);
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  font-weight: 700;
+  line-height: var(--text-meta-lh);
+  white-space: nowrap;
+}
+.relay-app .relay-functional-body {
+  min-width: 0;
+  margin: 0 !important;
+  padding: 16px;
+  gap: 16px;
+}
+.relay-app .relay-functional-pane .text-xs,
+.relay-app .relay-functional-pane [class~="text-[11px]"] {
+  font-size: var(--text-meta) !important;
+  line-height: var(--text-meta-lh) !important;
+}
+.relay-app .relay-functional-pane .text-sm {
+  font-size: var(--text-body) !important;
+  line-height: var(--text-body-lh) !important;
+}
+.relay-app .relay-functional-pane .sketch-input,
+.relay-app .relay-functional-pane .sketch-textarea {
+  box-sizing: border-box;
+  min-height: var(--tap);
+  padding: 9px 12px;
+  border: var(--bw) solid color-mix(in srgb, var(--ink) 24%, transparent);
+  border-radius: var(--radius-ctl);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: var(--text-body);
+  line-height: var(--text-body-lh);
+}
+.relay-app .relay-functional-pane textarea {
+  min-height: 176px;
+  padding: 13px 16px;
+}
+.relay-app .relay-functional-pane .sketch-input:focus,
+.relay-app .relay-functional-pane .sketch-textarea:focus {
+  border-color: var(--focus);
+  outline: 3px solid var(--focus);
+  outline-offset: -3px;
+}
+.relay-app .relay-functional-pane .sketch-btn {
+  display: inline-flex;
+  min-height: var(--tap);
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  border: var(--bw) solid var(--c-black);
+  border-radius: var(--radius-ctl);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-ctl);
+  font-family: var(--font-mono);
+  font-size: var(--text-body);
+  font-weight: 600;
+  line-height: var(--text-body-lh);
+  transition: transform var(--dur-fast) var(--ease-pop), box-shadow var(--dur-fast) var(--ease-pop);
+}
+.relay-app .relay-functional-pane .sketch-btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  border-color: var(--c-black);
+  background: var(--c-yellow);
+  box-shadow: 7px 7px 0 var(--c-black);
+}
+.relay-app .relay-functional-pane .sketch-btn:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+.relay-app .relay-functional-pane .sketch-btn:disabled {
+  opacity: .5;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+.relay-app .relay-functional-pane .sketch-panel-alt {
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  border-radius: var(--radius-card);
+  background: var(--surface-2);
+  box-shadow: none;
+}
+.relay-app .relay-functional-pane .sketch {
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  border-radius: var(--radius-ctl);
+  background: var(--surface);
+  color: var(--text);
+}
+.relay-app .relay-functional-pane .relay-subheading {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: var(--text-title);
+  font-weight: 800;
+  line-height: var(--text-title-lh);
+  letter-spacing: -.015em;
+}
+@media (max-width: 1120px) {
+  .relay-app .relay-bench > .relay-functional-pane {
+    min-height: 0;
+    height: auto;
+  }
+}
+@media (max-width: 640px) {
+  .relay-app .relay-functional-pane > .pane__head {
+    padding: 8px 12px;
+  }
+  .relay-app .relay-functional-body {
+    padding: 12px;
+    gap: 12px;
+  }
+  .relay-app .relay-functional-pane .sketch-btn {
+    padding: 10px 14px;
+  }
+}
