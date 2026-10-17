@@ -48,8 +48,8 @@ Dalam repo dan deployment yang sama tersedia **Relay**, workspace terpisah untuk
 
 <table>
   <tr>
-    <td width="50%" align="center"><img src="docs/images/preview-dark.png" alt="Tampilan RigForge dalam mode gelap" width="100%"><sub>Mode gelap</sub></td>
-    <td width="50%" align="center"><img src="docs/images/preview-light.png" alt="Tampilan RigForge dalam mode terang" width="100%"><sub>Mode terang</sub></td>
+    <td width="50%" align="center"><img src="docs/images/preview-dark.png" alt="Tampilan RigForge dalam mode gelap" width="100%"><br><sub>Mode gelap</sub></td>
+    <td width="50%" align="center"><img src="docs/images/preview-light.png" alt="Tampilan RigForge dalam mode terang" width="100%"><br><sub>Mode terang</sub></td>
   </tr>
 </table>
 
