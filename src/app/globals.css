@@ -302,3 +302,213 @@
     display: none;
   }
 }
+
+
+/* ============================================================
+   Shared product design system — RigForge + Relay
+   Same dark canvas, dotted grid, yellow accent, pink highlights,
+   typography, spacing and card geometry. Only app functionality differs.
+   ============================================================ */
+.relay-app {
+  --relay-paper: #111111;
+  --relay-paper-soft: #191919;
+  --relay-ink: #f5f1e8;
+  --relay-ink-soft: #c5c0b5;
+  --relay-ink-faint: #8e8a84;
+  --relay-line: #414141;
+  --relay-panel: #1d1d1d;
+  --relay-panel-soft: #242424;
+  --relay-background: #111111;
+  --relay-foreground: #f5f1e8;
+  background-color: var(--relay-background);
+  background-image: radial-gradient(circle, rgb(255 255 255 / 8%) 1px, transparent 1.5px);
+  background-position: 0 0;
+  background-size: 18px 18px;
+  color: var(--relay-foreground);
+}
+.dark .relay-app {
+  --relay-paper: #111111;
+  --relay-paper-soft: #191919;
+  --relay-ink: #f5f1e8;
+  --relay-ink-soft: #c5c0b5;
+  --relay-ink-faint: #8e8a84;
+  --relay-line: #414141;
+  --relay-panel: #1d1d1d;
+  --relay-panel-soft: #242424;
+  --relay-background: #111111;
+  --relay-foreground: #f5f1e8;
+}
+.relay-site-header {
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+  background: rgb(17 17 17 / 94%);
+  backdrop-filter: blur(14px);
+}
+.relay-site-header__inner {
+  width: min(100% - 48px, 1440px);
+  min-height: 74px;
+}
+.relay-brand__mark {
+  border: 0;
+  border-radius: 11px;
+  background: #ffd900;
+  color: #171717;
+  box-shadow: 3px 3px 0 #ff8bc9;
+}
+.relay-brand__name {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -.055em;
+  text-decoration: underline;
+  text-decoration-color: #ff8bc9;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+.relay-brand__descriptor {
+  color: #c5c0b5;
+}
+.relay-page-shell {
+  width: min(100% - 48px, 1440px);
+  gap: 28px;
+  padding-block: 40px 64px;
+}
+.relay-hero {
+  min-height: 478px;
+  padding: clamp(28px, 4vw, 58px);
+  border: 1px solid #484848;
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 98% 0%, rgb(75 91 119 / 34%), transparent 42%),
+    radial-gradient(ellipse at 0% 100%, rgb(255 139 201 / 9%), transparent 35%),
+    linear-gradient(120deg, #1d1d1d, #202020 70%);
+  box-shadow: 0 18px 55px rgb(0 0 0 / 18%);
+}
+.relay-hero__eyebrow {
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 7px 12px;
+  border: 1px solid #454545;
+  border-radius: 999px;
+  background: #292929;
+  color: #d4cec3;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+.relay-hero__title {
+  max-width: 12ch;
+  font-size: clamp(2.7rem, 4.3vw, 4.7rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -.065em;
+  text-wrap: balance;
+}
+.relay-hero__description {
+  max-width: 58ch;
+  margin-top: 22px;
+  color: #c5c0b5;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.relay-hero__badge {
+  align-self: flex-end;
+  border-color: #484848;
+  background: #191919;
+  color: #e7e1d6;
+}
+.relay-app .sketch,
+.relay-app .sketch-panel,
+.relay-app .sketch-panel-alt,
+.relay-app .sketch-btn,
+.relay-app .sketch-badge {
+  border-color: #454545;
+  border-radius: 12px;
+}
+.relay-app .sketch-panel,
+.relay-app .sketch-panel-alt {
+  background: #1d1d1d;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+.relay-app .sketch-btn {
+  min-height: 40px;
+  padding-inline: 15px;
+  background: #242424;
+  color: #f5f1e8;
+  font-weight: 750;
+  transition: transform .15s ease, border-color .15s ease, background-color .15s ease;
+}
+.relay-app .sketch-btn:hover {
+  transform: translateY(-1px);
+  border-color: #ffd900;
+  border-width: 2px;
+  background: #303030;
+}
+.relay-app .sketch-btn:active {
+  transform: translateY(0);
+}
+.relay-app .sketch-btn:focus-visible {
+  outline: 2px solid #ffd900;
+  outline-offset: 3px;
+}
+.relay-app .sketch-input,
+.relay-app .sketch-textarea {
+  border: 1px solid #555;
+  border-radius: 9px;
+  background: #141414;
+  color: #f5f1e8;
+}
+.relay-app .sketch-input:focus,
+.relay-app .sketch-textarea:focus {
+  border: 1px solid #ffd900;
+  outline: 2px solid rgb(255 217 0 / 20%);
+}
+.relay-app .sketch-input::placeholder,
+.relay-app .sketch-textarea::placeholder {
+  color: #8e8a84;
+}
+.relay-app .sketch-badge {
+  padding: 5px 10px;
+  background: #262626;
+  color: #e5e0d6;
+}
+.relay-page-shell > footer {
+  padding-top: 24px;
+  border-color: #414141;
+}
+@media (max-width: 760px) {
+  .relay-site-header__inner,
+  .relay-page-shell {
+    width: min(100% - 32px, 1440px);
+  }
+  .relay-page-shell {
+    gap: 22px;
+    padding-block: 24px 42px;
+  }
+  .relay-hero {
+    min-height: 0;
+    padding: 30px 24px;
+    border-radius: 18px;
+  }
+  .relay-hero__title {
+    max-width: 13ch;
+    font-size: clamp(2.35rem, 8vw, 3.4rem);
+  }
+  .relay-hero__badge {
+    align-self: flex-start;
+  }
+}
+@media (max-width: 480px) {
+  .relay-site-header__inner,
+  .relay-page-shell {
+    width: min(100% - 28px, 1440px);
+  }
+  .relay-site-header__inner {
+    min-height: 66px;
+  }
+  .relay-brand__mark {
+    width: 38px;
+    height: 38px;
+  }
+  .relay-brand__name {
+    font-size: 23px;
+  }
+}
