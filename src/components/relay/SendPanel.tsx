@@ -163,17 +163,15 @@ export function SendPanel({ token, channelId, isActive, channelName, message, on
   }
 
   return (
-    <section className="sketch-panel p-6" aria-labelledby="judul-kirim">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 id="judul-kirim" className="font-hand text-3xl">
-          Kirim Pesan
-        </h2>
+    <section className="pane pane--output relay-functional-pane" aria-labelledby="judul-kirim">
+      <div className="pane__head">
+        <h2 id="judul-kirim" className="pane__title"><span>Kirim Pesan</span></h2>
         <span className="sketch sketch-badge" role="status">
           {channelName ? `#${channelName}` : isActive ? "Siap" : "Belum aktif"}
         </span>
       </div>
 
-      <div className="mt-4 flex flex-col gap-4">
+      <div className="relay-functional-body mt-4 flex flex-col gap-4">
         <div>
           <label htmlFor="relay-message" className="mb-1 block text-sm font-semibold">
             Isi pesan
@@ -259,7 +257,7 @@ export function SendPanel({ token, channelId, isActive, channelName, message, on
 
         {history.length > 0 && (
           <div className="mt-1">
-            <h3 className="font-hand text-2xl">Terkirim sesi ini</h3>
+            <h3 className="relay-subheading">Terkirim sesi ini</h3>
             <ul className="mt-2 flex flex-col gap-2">
               {history.map((item, i) => (
                 <li key={`${item.messageId ?? "tanpa-id"}-${i}`} className="sketch px-3 py-2 text-xs leading-5">
