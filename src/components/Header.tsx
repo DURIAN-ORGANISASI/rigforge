@@ -24,13 +24,13 @@ export function Header() {
       <div className="container site-header__in">
         <div className="site-header__brand-group">
           <a className="brand" href="#konten" aria-label="RigForge — kembali ke awal">
-          <span className="brand__mark">
-            <Icon name="brackets" size={24} />
-          </span>
-          <div className="brand__text">
-            <h1 className="brand__name">RigForge</h1>
-            <span className="brand__descriptor">Avatar data <span aria-hidden="true">→</span> Lua</span>
-          </div>
+            <span className="brand__mark">
+              <Icon name="brackets" size={24} />
+            </span>
+            <div className="brand__text">
+              <h1 className="brand__name">RigForge</h1>
+              <span className="brand__descriptor">Avatar data <span aria-hidden="true">→</span> Lua</span>
+            </div>
           </a>
           <AppSwitcher target="relay" />
         </div>
