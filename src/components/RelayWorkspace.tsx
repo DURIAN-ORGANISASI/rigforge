@@ -6,18 +6,12 @@ import { Icon } from "@/components/Icon";
 import { ConfigPanel } from "@/components/relay/ConfigPanel";
 import { Footer } from "@/components/relay/Footer";
 import { SendPanel } from "@/components/relay/SendPanel";
-import { StatusStrip } from "@/components/relay/StatusStrip";
 import { useBotConfig } from "@/hooks/relay/useBotConfig";
 
 export default function RelayWorkspace() {
   const config = useBotConfig();
-  const { savedToken, savedChannelId, hasSavedConfig, status, lastCheck, slots, activeSlotId } = config;
+  const { savedToken, savedChannelId, hasSavedConfig, status, lastCheck } = config;
   const [message, setMessage] = useState("");
-
-  const activeSlot = slots.find((slot) => slot.id === activeSlotId);
-  const activeLabel = activeSlot?.label.trim() || `Slot ${activeSlotId}`;
-  const activeTail = activeSlot?.channelId.trim() ?? "";
-  const slotText = activeTail ? `${activeLabel} — …${activeTail.slice(-6)}` : `${activeLabel} (kosong)`;
 
   return (
     <div className="relay-app min-h-screen">
@@ -35,10 +29,6 @@ export default function RelayWorkspace() {
               <span className="workspace-heading__status">
                 <Icon name="check" size={15} /> Discord Bot API
               </span>
-            </div>
-
-            <div id="relay-config" className="relay-status-wrap">
-              <StatusStrip status={status} slotText={slotText} charCount={message.length} />
             </div>
 
             <div className="bench relay-bench">
