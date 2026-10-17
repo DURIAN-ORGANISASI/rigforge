@@ -13,8 +13,6 @@ export default function RelayWorkspace() {
   const { savedToken, savedChannelId, hasSavedConfig, status, lastCheck } = config;
   const [message, setMessage] = useState("");
 
-
-
   return (
     <div className="relay-app min-h-screen">
       <Header variant="relay" />
@@ -32,8 +30,6 @@ export default function RelayWorkspace() {
                 <Icon name="check" size={15} /> Discord Bot API
               </span>
             </div>
-
-            <div id="relay-config" />
 
             <div className="bench relay-bench">
               <ConfigPanel config={config} />
