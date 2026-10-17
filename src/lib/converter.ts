@@ -180,10 +180,18 @@ export function convertAvatarData(raw: string): ConversionResult {
       try {
         const blobJson: unknown = JSON.parse(blobMatch[1])
         if (Array.isArray(blobJson)) {
-          // `any` disengaja: item yang bukan objek harus memicu error yang sama seperti versi asli.
-          blobJson.forEach((item: any) => {
-            const type = item.AccessoryType
-            const id = item.AssetId
+          // Keep parsed JSON as unknown until its object shape is checked.
+          blobJson.forEach((item: unknown) => {
+            if (typeof item !== 'object' || item === null) {
+              throw new TypeError('Item AccessoryBlob harus berupa objek.')
+            }
+            const record = item as Record<string, unknown>
+            const type = String(record.AccessoryType)
+            const rawId = record.AssetId
+            const id: AssetId =
+              typeof rawId === 'string' || typeof rawId === 'number'
+                ? rawId
+                : String(rawId)
 
             const bucket = layered.get(type) ?? accessories.get(type)
             if (bucket) {
