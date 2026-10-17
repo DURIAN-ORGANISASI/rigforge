@@ -1,20 +1,25 @@
 "use client";
 
+import { Icon } from "@/components/Icon";
 import { useTheme } from "@/hooks/relay/useTheme";
 
-/** Tombol toggle siang/malam — murni monokrom, hanya ikon matahari/bulan ASCII-sketsa. */
 export function ThemeToggle() {
   const { theme, toggle, ready } = useTheme();
+  const isDark = theme === "gelap";
+  const label = isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap";
 
   return (
     <button
       type="button"
+      role="switch"
+      aria-checked={isDark}
+      aria-label={label}
+      title={label}
+      className="icon-btn"
       onClick={toggle}
-      aria-label={theme === "terang" ? "Aktifkan mode gelap" : "Aktifkan mode terang"}
-      title={theme === "terang" ? "Aktifkan mode gelap" : "Aktifkan mode terang"}
-      className="sketch-btn px-4 py-2 text-sm font-semibold tracking-wide"
+      disabled={!ready}
     >
-      {ready ? (theme === "terang" ? "☾ malam" : "☀ siang") : "…"}
+      <Icon name={isDark ? "moon" : "sun"} size={22} />
     </button>
   );
 }
