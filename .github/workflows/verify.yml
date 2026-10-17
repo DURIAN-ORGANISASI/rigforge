@@ -37,6 +37,7 @@ jobs:
         run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
 
       - name: Commit lock file if refreshed
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
         run: |
           if ! git diff --quiet -- package-lock.json; then
             git config user.name "github-actions[bot]"
