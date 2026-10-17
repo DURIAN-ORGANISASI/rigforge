@@ -802,3 +802,87 @@
   .relay-preview__cardhead { padding: 8px; }
   .relay-preview__field { padding-inline: 6px; }
 }
+
+
+/* Component-level finish: Relay's functional cards follow RigForge's pink/yellow panels. */
+.relay-workspace-grid > section:first-child,
+.relay-workspace-grid > section:last-child {
+  overflow: hidden;
+  padding: 0 !important;
+  border: 2px solid #f5f1e8 !important;
+  border-radius: 12px !important;
+  background: #1d1d1d !important;
+}
+.relay-workspace-grid > section > div:first-child {
+  margin: 0;
+  padding: 13px 14px;
+  border-bottom: 2px solid #f5f1e8;
+  background: #ff8bc9;
+  color: #171717;
+}
+.relay-workspace-grid > section:last-child > div:first-child {
+  background: #ffd900;
+}
+.relay-workspace-grid > section > div:first-child h2 {
+  color: #171717;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+}
+.relay-workspace-grid > section > div:first-child .sketch-badge {
+  border: 1px solid rgb(0 0 0 / 25%);
+  background: rgb(255 255 255 / 45%);
+  color: #171717;
+}
+.relay-workspace-grid > section > div:not(:first-child) {
+  margin-inline: 14px;
+}
+.relay-workspace-grid > section > div:nth-child(2) {
+  margin-top: 14px;
+}
+.relay-workspace-grid > section > div:last-child {
+  margin-bottom: 14px;
+}
+.relay-workspace-grid .sketch-input,
+.relay-workspace-grid .sketch-textarea {
+  background: #141414;
+  color: #f5f1e8;
+}
+.relay-workspace-grid .sketch-btn {
+  min-height: 36px;
+  border: 1px solid #555;
+  background: #f5f1e8;
+  color: #171717;
+}
+.relay-workspace-grid .sketch-btn:hover {
+  border-color: #ffd900;
+  background: #ffd900;
+}
+.relay-workspace-grid button:disabled {
+  opacity: .42;
+  cursor: not-allowed;
+}
+.relay-workspace-grid input[type="checkbox"] {
+  accent-color: #ffd900;
+}
+.relay-workspace-grid .sketch-panel-alt {
+  border-color: #494949;
+  background: #242424;
+}
+.relay-app .sketch {
+  border: 1px solid #454545;
+  border-radius: 9px;
+  background: #191919;
+}
+#relay-config > .sketch {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 7px 12px;
+  color: #e7e1d6;
+}
+@media (max-width: 760px) {
+  .relay-workspace-grid > section > div:first-child { padding: 12px; }
+  .relay-workspace-grid > section > div:not(:first-child) { margin-inline: 12px; }
+}
