@@ -172,7 +172,7 @@ export function SendPanel({ token, channelId, isActive, channelName, message, on
       </div>
 
       <div className="relay-functional-body mt-4 flex flex-col gap-4">
-        <div>
+        <div className="relay-message-field">
           <label htmlFor="relay-message" className="mb-1 block text-sm font-semibold">
             Isi pesan
           </label>
