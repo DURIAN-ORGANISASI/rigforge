@@ -48,8 +48,8 @@ The same repository and deployment also include **Relay**, a separate workspace 
 
 <table>
   <tr>
-    <td width="50%" align="center"><img src="docs/images/preview-dark.png" alt="RigForge interface in dark mode" width="100%"><sub>Dark mode</sub></td>
-    <td width="50%" align="center"><img src="docs/images/preview-light.png" alt="RigForge interface in light mode" width="100%"><sub>Light mode</sub></td>
+    <td width="50%" align="center"><img src="docs/images/preview-dark.png" alt="RigForge interface in dark mode" width="100%"><br><sub>Dark mode</sub></td>
+    <td width="50%" align="center"><img src="docs/images/preview-light.png" alt="RigForge interface in light mode" width="100%"><br><sub>Light mode</sub></td>
   </tr>
 </table>
 
