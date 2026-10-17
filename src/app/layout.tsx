@@ -22,6 +22,7 @@ const sansFont = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rigforge-mocha.vercel.app"),
   title: {
     default: "RigForge + Relay — Roblox Lua & Discord Tools",
     template: "%s | RigForge + Relay",

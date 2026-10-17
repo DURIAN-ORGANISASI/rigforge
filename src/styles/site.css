@@ -34,6 +34,56 @@
   gap: 12px;
   min-width: 0;
 }
+
+/* Satu ikon untuk berpindah seluruh workspace RigForge ↔ Relay. */
+.site-header__brand-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.app-switcher-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 48px;
+  width: 48px;
+  min-width: 48px;
+  min-height: 44px;
+  padding: 6px 2px;
+  margin: 0;
+  color: var(--c-blue, #78aaff);
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: none;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--dur-fast, 120ms) var(--ease-pop, ease), opacity 120ms ease;
+}
+.app-switcher-icon svg {
+  display: block;
+  width: 44px;
+  height: 18px;
+  overflow: visible;
+  animation: zig-sway 3s ease-in-out infinite alternate;
+}
+.app-switcher-icon:hover {
+  transform: translateY(-2px) scale(1.04);
+  opacity: 0.88;
+}
+.app-switcher-icon:active {
+  transform: translateY(1px) scale(0.97);
+}
+.app-switcher-icon:focus-visible {
+  outline: 2px solid var(--c-blue, #78aaff);
+  outline-offset: 2px;
+}
+.relay-app .app-switcher-icon {
+  color: var(--c-blue, #78aaff);
+}
+
 /* Stiker logo: kotak kuning 48px miring -4deg, border + shadow #111
    di kedua mode (berdiri di atas blok kuningnya sendiri, aturan 2a). */
 .brand__mark {

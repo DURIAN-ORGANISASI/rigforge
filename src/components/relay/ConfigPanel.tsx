@@ -61,6 +61,8 @@ export function ConfigPanel({ config }: { config: BotConfig }) {
   // Draft per slot (diketik user, belum tentu tersimpan).
   const [drafts, setDrafts] = useState<Record<number, SlotDraft>>(() => toDrafts(slots));
   useEffect(() => {
+    // Intentional local draft synchronization after bot slots hydrate from localStorage.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDrafts(toDrafts(slots));
   }, [slots]);
 

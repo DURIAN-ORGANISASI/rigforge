@@ -11,8 +11,6 @@ export function Converter() {
   const [raw, setRaw] = useState<string>(SAMPLE_DATA)
   // Nilai yang sudah dikonversi; selisih dengan raw = masih memproses.
   const [doneRaw, setDoneRaw] = useState<string>(SAMPLE_DATA)
-  // Naik setiap kali "Generate Paksa" ditekan, memaksa konversi dijalankan ulang.
-  const [forceRun, setForceRun] = useState(0)
   const [copied, setCopied] = useState(false)
   const [flash, setFlash] = useState(false)
   // Lapisan gerak saja: putaran ikon Generate selama jendela visual.
@@ -25,12 +23,14 @@ export function Converter() {
   const spinTimer = useRef<number | undefined>(undefined)
   const copyTimer = useRef<number | undefined>(undefined)
   const shakeTimer = useRef<number | undefined>(undefined)
+  const flashTimer = useRef<number | undefined>(undefined)
 
   /* Bersihkan timer visual saat lepas. */
   useEffect(() => () => {
     window.clearTimeout(spinTimer.current)
     window.clearTimeout(copyTimer.current)
     window.clearTimeout(shakeTimer.current)
+    window.clearTimeout(flashTimer.current)
   }, [])
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export function Converter() {
     return () => window.clearTimeout(id)
   }, [raw, doneRaw])
 
-  const result = useMemo(() => convertAvatarData(doneRaw), [doneRaw, forceRun])
+  const result = useMemo(() => convertAvatarData(doneRaw), [doneRaw])
 
   /* Setiap hasil baru tampil dari atas: kembalikan scroll editor output
      ke 0 supaya tidak ada posisi scroll nyasar (khususnya horizontal). */
@@ -49,13 +49,6 @@ export function Converter() {
     el.scrollTop = 0
     el.scrollLeft = 0
   }, [result.lua])
-
-  useEffect(() => {
-    if (forceRun === 0) return
-    setFlash(true)
-    const id = window.setTimeout(() => setFlash(false), 700)
-    return () => window.clearTimeout(id)
-  }, [forceRun])
 
   /* Kedip lembut sekali tiap hasil berubah (visual saja): lepas-pasang
      class sehingga animasi selalu mulai ulang; lewati render pertama
@@ -95,7 +88,9 @@ export function Converter() {
   }
   const generateNow = () => {
     setDoneRaw(raw) // Generate tidak boleh tertahan debounce
-    setForceRun((n) => n + 1)
+    setFlash(true)
+    window.clearTimeout(flashTimer.current)
+    flashTimer.current = window.setTimeout(() => setFlash(false), 700)
     // Ikon berputar selama jendela visual 500ms; konversi sendiri sinkron.
     window.clearTimeout(spinTimer.current)
     setSpinning(true)

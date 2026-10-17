@@ -37,14 +37,18 @@ RigForge converts raw Roblox avatar data into a Lua script. In the same reposito
 
 Three principles guide the tool:
 
-- **Two tools, one place.** RigForge stays on the home page (`/`); Relay lives at `/relay`. Use the yellow header button to switch between them.
+- **Two tools, one place.** RigForge stays on the home page (`/`); Relay lives at `/relay`. Use the blue zigzag icon beside the app name to switch workspaces.
 - **A consistent template.** Every section has a minimum slot count, so the output always has the same shape and is easy to compare between avatars.
 - **Locked down by tests.** The parser and generator are covered by 74 tests, including 26 snapshot cases, so conversion behavior never changes silently.
 
-## Two workspaces
+## Two workspaces in one application
 
 - **RigForge (`/`)** — converts avatar data into Lua; conversion input stays in the browser.
-- **Relay (`/relay`)** — configure an official Bot Token, test channel access, and send Discord messages. The yellow header button switches between RigForge and Relay.
+- **Relay (`/relay`)** — configure an official Bot Token, test channel access, and send Discord messages.
+
+Both workspaces run from the **same repository, dependency graph, and Next.js deployment**. All required Relay code is integrated into `src/components/relay/`, `src/hooks/relay/`, `src/lib/relay/`, and the server-side APIs under `src/app/api/discord/`. Building or deploying RigForge does not need to fetch source from the separate Relay repository. The original `akndrn000/relay` repository is intentionally left intact as a standalone backup.
+
+Use the small blue zigzag icon beside the current workspace name to switch the full page between RigForge and Relay. The icon is keyboard-accessible and includes an accessible label.
 
 ## Screenshots
 
@@ -83,7 +87,7 @@ Three principles guide the tool:
 4. Click **Generate Paksa** (force generate) to re-run the conversion right away.
 5. **Review** the `Body`, `Clothes`, and `Accessories` sections.
 6. Click **Salin Kode** (copy code), then paste into Roblox Studio.
-7. Use the yellow header button to switch to Relay (`/relay`). Configure the Discord bot there, then use the header button on Relay to return to RigForge.
+7. Click the blue zigzag icon beside the RigForge wordmark to open Relay (`/relay`). Configure the Discord bot there, then click the icon beside the Relay title to return to RigForge.
 
 > [!TIP]
 > Not sure about your data format? Click **Contoh Data** (sample data), look at the input and output shapes, then replace the content with your own.
