@@ -180,18 +180,16 @@ export function convertAvatarData(raw: string): ConversionResult {
       try {
         const blobJson: unknown = JSON.parse(blobMatch[1])
         if (Array.isArray(blobJson)) {
-          // Keep parsed JSON as unknown until its object shape is checked.
+          // Keep parsed JSON as unknown; preserve the original JS property-access behavior.
           blobJson.forEach((item: unknown) => {
-            if (typeof item !== 'object' || item === null) {
-              throw new TypeError('Item AccessoryBlob harus berupa objek.')
+            // Accessing a property on null/undefined throws; primitive JSON values
+            // otherwise behave like the original parser and yield undefined fields.
+            if (item === null || item === undefined) {
+              throw new TypeError('Item AccessoryBlob tidak boleh null atau undefined.')
             }
-            const record = item as Record<string, unknown>
-            const type = String(record.AccessoryType)
-            const rawId = record.AssetId
-            const id: AssetId =
-              typeof rawId === 'string' || typeof rawId === 'number'
-                ? rawId
-                : String(rawId)
+            const record = Object(item) as Record<string, unknown>
+            const type = record.AccessoryType as string
+            const id = record.AssetId as AssetId
 
             const bucket = layered.get(type) ?? accessories.get(type)
             if (bucket) {
