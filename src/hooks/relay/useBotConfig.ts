@@ -97,6 +97,8 @@ export function useBotConfig() {
   }, []);
 
   // Muat tersimpan saat pertama dibuka; bila lengkap, uji otomatis di latar.
+  // State is hydrated from localStorage only after mount to avoid SSR hydration mismatch.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     let loadedSlots = loadChannelSlots();
     // Migrasi sekali dari kunci lama → slot 1 (bila semua slot masih kosong).
@@ -126,6 +128,7 @@ export function useBotConfig() {
       void runCheck(t, activeChannel);
     }
   }, [runCheck]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const testConnection = useCallback(async () => {
     return runCheck(token.trim(), activeChannelId.trim());
