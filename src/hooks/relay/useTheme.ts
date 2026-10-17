@@ -9,6 +9,8 @@ export function useTheme() {
   const [theme, setTheme] = useState<Theme>("terang");
   const [ready, setReady] = useState(false);
 
+  // Read persisted preference after hydration so the initial server render stays deterministic.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     try {
       const saved = localStorage.getItem("relay-theme");
@@ -22,6 +24,7 @@ export function useTheme() {
     }
     setReady(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     if (!ready) return;
