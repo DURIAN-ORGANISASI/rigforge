@@ -1,32 +1,39 @@
-/** Footer Relay: 3 kolom di desktop, tumpuk di mobile. */
+import { Icon } from "@/components/Icon";
+
 export function Footer() {
   return (
-    <footer className="border-t-2 border-[var(--relay-line)] pt-6">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div>
-          <p className="font-hand text-2xl leading-none">Relay</p>
-          <p className="mt-2 text-xs leading-5 opacity-70">
-            Web tools untuk mengirim pesan ke channel Discord lewat Bot Discord resmi.
+    <footer className="site-footer">
+      <div className="container site-footer__in">
+        <div className="site-footer__grid">
+          <div className="site-footer__brand">
+            <div className="site-footer__brandrow">
+              <span className="brand__mark" aria-hidden="true">
+                <svg className="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m22 2-7 20-4-9-9-4Z" />
+                  <path d="M22 2 11 13" />
+                </svg>
+              </span>
+              <p className="site-footer__name">Relay</p>
+            </div>
+            <p className="site-footer__tag">
+              Alat pengiriman pesan Discord melalui Bot API resmi.
+            </p>
+          </div>
+
+          <p className="site-footer__text">
+            Relay adalah alat independen dan tidak berafiliasi dengan Discord Inc. Discord adalah
+            merek dagang milik Discord Inc.
+          </p>
+
+          <p className="site-footer__text">
+            Bot Token dan isi pesan tidak disimpan di database Relay. Informasi diproses melalui
+            aplikasi dan Discord Bot API untuk menjalankan fitur pengiriman.
           </p>
         </div>
-        <div>
-          <p className="text-xs font-bold">Disclaimer</p>
-          <p className="mt-2 text-xs leading-5 opacity-70">
-            Relay adalah alat independen yang memakai Bot Discord resmi — bukan self-bot — dan tidak
-            berafiliasi dengan Discord Inc. Discord adalah merek dagang milik Discord Inc.
-          </p>
+        <div className="site-footer__bar">
+          <span>&copy; 2026 Relay</span>
+          <span>Discord Bot API resmi</span>
         </div>
-        <div>
-          <p className="text-xs font-bold">Privasi</p>
-          <p className="mt-2 text-xs leading-5 opacity-70">
-            Bot Token dan pesan dikirim dari browser melalui API Route milik Relay sendiri ke
-            Discord; tidak pernah disimpan di server/database. Tanpa analytics atau pelacak.
-          </p>
-        </div>
-      </div>
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-[var(--relay-line)] pt-3 text-[11px] opacity-70">
-        <span>© 2026 Relay</span>
-        <span className="font-mono">diproses via API Route sendiri</span>
       </div>
     </footer>
   );
