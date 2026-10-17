@@ -10,7 +10,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: verify-${{ github.workflow }}-${{ github.ref }}
@@ -31,7 +31,22 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      # Regenerate the lock file after a manifest update, using the npm resolver
+      # rather than manually editing package versions or integrity hashes.
+      - name: Refresh lock file
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+
+      - name: Commit lock file if refreshed
+        run: |
+          if ! git diff --quiet -- package-lock.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add package-lock.json
+            git commit -m "chore: refresh lock file for Node 22 types"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Install locked dependencies
         run: npm ci
 
       - name: Typecheck
