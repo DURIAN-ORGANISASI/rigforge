@@ -279,7 +279,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .relay-app .relay-functional-body > :first-child { margin-top: 0; }
 .relay-app .relay-functional-body label, .relay-app .relay-functional-body h3 { color: var(--text); }
 .relay-app .relay-functional-body .text-xs { color: var(--muted); }
-.relay-app .relay-status-strip { color: var(--muted); }
 .relay-app .relay-page-shell { max-width: 1320px; }
 .relay-app .relay-page-shell > footer { border-color: var(--footer-line); }
 .relay-app .relay-page-shell, .relay-app .relay-site-header__inner { width: min(100% - 48px,1320px); }
