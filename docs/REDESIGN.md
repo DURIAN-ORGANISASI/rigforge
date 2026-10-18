@@ -1,30 +1,31 @@
 # RigForge UI refresh
 
-This branch refreshes the product interface for both workspaces while preserving converter, Discord API, storage, and message-dispatch logic.
+This refresh focuses on a **tool-first interface**. Both routes open directly into their working panels without large marketing heroes, feature cards, or promotional sections.
 
 ## Design direction
 
-- **Brand:** RigForge and Relay share a consistent navigation pattern and UI foundation.
-- **Palette:** deep ink and cloud surfaces, electric blue for primary actions, cyan for secondary highlights.
-- **Typography:** strong sans-serif hierarchy for content, JetBrains Mono for code and system-preview areas.
-- **Layout:** product hero, working tool, and concise workflow guide on RigForge; service hero, configuration, and dispatch tools on Relay.
-- **Responsive behavior:** the two-column editor becomes a vertical stack on compact screens; Relay's illustrative preview also collapses to one column.
+- **Primary goal:** make the tool accessible immediately and keep the working area dominant.
+- **Palette:** deep ink and cloud surfaces with electric blue and cyan accents.
+- **Typography:** clear sans-serif headings, JetBrains Mono for code and technical preview content.
+- **Layout:** a compact workspace heading followed by the active tool panels.
+- **Navigation:** a single workspace switch between RigForge and Relay, plus the theme control.
+- **Responsive behavior:** converter panels sit side-by-side on wide screens and stack on smaller screens; Relay uses a similar layout.
 - **Accessibility:** visible focus rings, semantic landmarks, clear link labels, and reduced-motion support.
 
 ## Implementation
 
-- src/styles/redesign.css contains the override layer imported last by src/app/layout.tsx.
-- src/components/Header.tsx provides shared navigation and the existing theme toggle.
-- src/components/RigForgeApp.tsx composes the landing hero, converter, and workflow section.
-- src/components/RelayWorkspace.tsx adds a product introduction while keeping configuration and send panels.
-- README.md and README.en.md document workflows, privacy boundaries, scripts, and deployment.
+- `src/styles/redesign.css` contains the shared visual layer and workspace sizing overrides.
+- `src/components/Header.tsx` provides the compact workspace switcher and theme toggle.
+- `src/components/RigForgeApp.tsx` renders only the converter workspace.
+- `src/components/RelayWorkspace.tsx` renders only the Relay configuration and send panels.
+- `README.md` and `README.en.md` document workflows, privacy boundaries, scripts, and deployment.
 
 ## Validation checklist
 
-- npm run lint
-- npm run typecheck
-- npm run test
-- npm run build
-- Manually test both themes at desktop and mobile widths.
+- `npm run lint`
+- `npm run typecheck`
+- `npm run test`
+- `npm run build`
+- Verify both themes at desktop and mobile widths.
 - Verify converter sample, reset, force-generate, and clipboard behavior.
-- Verify Relay config persistence, token visibility toggle, connection test, send validation, retries, and history.
+- Verify Relay configuration persistence, token visibility, connection checks, send validation, rate-limit retries, and session history.

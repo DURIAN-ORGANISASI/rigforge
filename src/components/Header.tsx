@@ -37,26 +37,21 @@ export function Header({ variant = "rigforge" }: HeaderProps) {
             <span className="brand__text">
               <span className="brand__name">{isRelay ? "Relay" : "RigForge"}</span>
               <span className="brand__descriptor">
-                {isRelay ? "Discord message workspace" : "Avatar data to Lua"}
+                {isRelay ? "Discord message tools" : "Avatar data to Lua"}
               </span>
             </span>
           </Link>
         </div>
 
-        <nav className="site-header__nav" aria-label="Navigasi utama">
+        <nav className="site-header__nav" aria-label="Pindah workspace">
           {isRelay ? (
-            <>
-              <span className="site-header__current"><span className="site-header__current-dot" /> Relay workspace</span>
-              <Link className="site-header__nav-link site-header__nav-link--primary" href="/">
-                RigForge <Icon name="arrow" size={15} />
-              </Link>
-            </>
+            <Link className="site-header__nav-link site-header__nav-link--primary" href="/">
+              RigForge <Icon name="arrow" size={15} />
+            </Link>
           ) : (
-            <>
-              <a className="site-header__nav-link site-header__nav-link--home-secondary" href="#cara-kerja">Cara kerja</a>
-              <a className="site-header__nav-link site-header__nav-link--primary" href="#konverter">Buka konverter <Icon name="arrow" size={15} /></a>
-              <Link className="site-header__nav-link" href="/relay">Relay <Icon name="arrow" size={15} /></Link>
-            </>
+            <Link className="site-header__nav-link site-header__nav-link--primary" href="/relay">
+              Relay <Icon name="arrow" size={15} />
+            </Link>
           )}
         </nav>
 
