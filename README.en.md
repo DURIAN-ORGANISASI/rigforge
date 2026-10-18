@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/logo.svg" alt="RigForge" width="96" height="96">
+<img src="https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/logo.svg" alt="RigForge" width="84" height="84">
 
 # RigForge
 
@@ -17,7 +17,7 @@
 
 <p><a href="README.md">Bahasa Indonesia</a> · <a href="README.en.md">English</a></p>
 
-<p><b>Convert Roblox avatar data into a Lua structure directly in your browser.</b> RigForge provides the avatar conversion workspace, while Relay is a separate workspace for Discord Bot configuration and message delivery.</p>
+<p><strong>Convert Roblox avatar data into a Lua structure directly in your browser.</strong> RigForge provides the avatar conversion workspace, while Relay is a separate workspace for Discord Bot configuration and message delivery.</p>
 
 <p>
   <a href="#try-it-now">Try it now</a> ·
