@@ -17,7 +17,8 @@
 
 <p><a href="README.md">Bahasa Indonesia</a> · <a href="README.en.md">English</a></p>
 
-<p><strong>Convert Roblox avatar data into a Lua structure directly in your browser.</strong> RigForge provides the avatar conversion workspace, while Relay is a separate workspace for Discord Bot configuration and message delivery.</p>
+<p><strong>Convert Roblox avatar data into a Lua structure directly in your browser.</strong><br>
+RigForge provides the avatar conversion workspace, while Relay is a separate workspace for Discord Bot configuration and message delivery.</p>
 
 <p>
   <a href="#try-it-now">Try it now</a> ·
