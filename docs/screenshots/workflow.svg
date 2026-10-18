@@ -29,7 +29,7 @@
       <rect width="360" height="130" rx="13" fill="#101B2C" stroke="#344A68"/>
       <rect x="16" y="16" width="37" height="37" rx="10" fill="#17434F"/>
       <text x="34.5" y="39" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="850" fill="#71E5F0">03</text>
-      <text x="70" y="31" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="850" letter-spacing=".4" fill="#EAF2FE">SALIN & UJI</text>
+      <text x="70" y="31" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="850" letter-spacing=".4" fill="#EAF2FE">SALIN &amp; UJI</text>
       <text x="70" y="53" font-family="Inter,Arial,sans-serif" font-size="11" fill="#A8BAD3">Tempel hasilnya ke Roblox Studio lalu uji.</text>
       <path d="M16 77H344" stroke="#2A3E59"/>
       <circle cx="22" cy="101" r="3" fill="#4AD7E9"/>
