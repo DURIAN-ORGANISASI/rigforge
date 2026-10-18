@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/logo.svg" alt="RigForge" width="96" height="96">
+<img src="https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/logo.svg" alt="RigForge" width="96" height="96">
 
 # RigForge
 
@@ -42,11 +42,11 @@ Start converting in three steps:
 2. Paste avatar tokens or JSON data into the input panel. Lua output updates automatically.
 3. Review the result, select **Salin Kode** (Copy Code), then paste and test it in Roblox Studio.
 
-![RigForge converter workspace illustration](docs/screenshots/en/converter.svg)
+![RigForge converter workspace illustration](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/en/converter.svg)
 
 To send a message through the Discord Bot API, open [Relay](https://rigforge-mocha.vercel.app/relay), enter an official Bot Token, choose a Channel ID slot, and test access before sending.
 
-![Relay workspace illustration](docs/screenshots/en/relay.svg)
+![Relay workspace illustration](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/en/relay.svg)
 
 ## Features
 
@@ -81,13 +81,13 @@ To send a message through the Discord Bot API, open [Relay](https://rigforge-moc
 
 RigForge accepts avatar tokens and JSON `AccessoryBlob` data. Select **Contoh Data** (Sample Data) to try the converter without preparing your own input.
 
-![Avatar input example](docs/screenshots/en/input-format.svg)
+![Avatar input example](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/en/input-format.svg)
 
 ### 2. Review and copy Lua output
 
 Output is generated automatically. Use **Generate Paksa** (Force Generate) to run conversion immediately, then select **Salin Kode** (Copy Code) to copy the full result.
 
-![Conversion workflow](docs/screenshots/en/workflow.svg)
+![Conversion workflow](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/en/workflow.svg)
 
 ### 3. Set up Relay when you need to send a message
 
@@ -97,7 +97,7 @@ Output is generated automatically. Use **Generate Paksa** (Force Generate) to ru
 4. Test channel access. Make sure the bot has joined the server and has the required permissions.
 5. Write the message, review the destination, and send it.
 
-![Relay configuration and message workflow](docs/screenshots/en/relay.svg)
+![Relay configuration and message workflow](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/en/relay.svg)
 
 ## Input format
 
@@ -140,7 +140,7 @@ Unused slots use `AssetId = 0`. Extra IDs add rows to the relevant group, while 
 - Use an official token from the Discord Developer Portal. Personal-account tokens and self-bots are not supported.
 - Never publish or commit a token. Reset it in the Discord Developer Portal if exposed. On shared devices, clear the site's data after use.
 
-![Illustration of processing and request flow](docs/screenshots/en/privacy.svg)
+![Illustration of processing and request flow](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/en/privacy.svg)
 
 ## Development
 
