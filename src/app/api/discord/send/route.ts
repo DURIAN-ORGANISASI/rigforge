@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { DISCORD_MESSAGE_LIMIT, type SendMessageResult } from "@/lib/relay/types";
+import { normalizeBotToken } from "@/lib/relay/token";
 
 /**
  * POST /api/discord/send
@@ -44,7 +45,7 @@ export async function POST(req: Request): Promise<NextResponse<SendMessageResult
     return bad("Body request harus JSON valid berisi { token, channelId, message }.");
   }
 
-  const token = typeof body.token === "string" ? body.token.trim() : "";
+  const token = normalizeBotToken(body.token);
   const channelId = typeof body.channelId === "string" ? body.channelId.trim() : "";
   const message = typeof body.message === "string" ? body.message : "";
   const asCodeBlock = body.asCodeBlock === true;
