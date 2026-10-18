@@ -1,119 +1,105 @@
 <div align="center">
 
-<img src="docs/images/en/banner.svg" alt="RigForge — Roblox avatar to Lua converter" width="100%">
+<img src="docs/logo.svg" alt="RigForge" width="96" height="96">
 
-<p><strong>Convert Roblox avatar data into a structured Lua output, right in your browser.</strong><br>
-<sub>Includes Relay, a workspace for Discord bot configuration and message delivery.</sub></p>
+# RigForge
 
 <p>
-  <a href="https://rigforge-mocha.vercel.app/"><img src="https://img.shields.io/badge/OPEN_RIGFORGE-4C8DFF?style=for-the-badge&labelColor=0B1220" alt="Open RigForge"></a>
-  <a href="https://rigforge-mocha.vercel.app/relay"><img src="https://img.shields.io/badge/OPEN_RELAY-4AD7E9?style=for-the-badge&labelColor=0B1220" alt="Open Relay"></a>
-  <a href="README.md"><img src="https://img.shields.io/badge/DOCUMENTATION-Bahasa_Indonesia-9AB8FF?style=for-the-badge&labelColor=0B1220" alt="Documentation in Indonesian"></a>
+  <a href="https://nextjs.org/"><img alt="Next.js" src="https://img.shields.io/badge/Next.js-111827?style=flat&logo=nextdotjs&logoColor=white"></a>
+  <a href="https://react.dev/"><img alt="React" src="https://img.shields.io/badge/React-087EA4?style=flat&logo=react&logoColor=white"></a>
+  <a href="https://www.typescriptlang.org/"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white"></a>
+  <a href="https://vercel.com/"><img alt="Vercel" src="https://img.shields.io/badge/Vercel-111827?style=flat&logo=vercel&logoColor=white"></a>
+  <a href="https://vitest.dev/"><img alt="Vitest" src="https://img.shields.io/badge/Vitest-6E9F18?style=flat&logo=vitest&logoColor=white"></a>
+  <a href="https://eslint.org/"><img alt="ESLint" src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white"></a>
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-4AD7B1?style=flat"></a>
 </p>
 
+<p><a href="README.md">Bahasa Indonesia</a> · <a href="README.en.md">English</a></p>
+
+<p><b>Convert Roblox avatar data into a Lua structure directly in your browser.</b> RigForge provides the avatar conversion workspace, while Relay is a separate workspace for Discord Bot configuration and message delivery.</p>
+
 <p>
-  <a href="https://github.com/akndrn000/rigforge/actions/workflows/verify.yml"><img src="https://github.com/akndrn000/rigforge/actions/workflows/verify.yml/badge.svg?branch=main" alt="CI status"></a>
-  <img src="https://img.shields.io/badge/Node.js-22.x-339933?logo=nodedotjs&logoColor=white" alt="Node.js 22">
-  <img src="https://img.shields.io/badge/Next.js-16-111827?logo=nextdotjs" alt="Next.js 16">
-  <img src="https://img.shields.io/badge/React-19-087EA4?logo=react" alt="React 19">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-4AD7B1?labelColor=0B1220" alt="MIT License"></a>
+  <a href="#try-it-now">Try it now</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#how-to-use">How to use</a> ·
+  <a href="#input-format">Input format</a> ·
+  <a href="#privacy">Privacy</a> ·
+  <a href="#development">Development</a> ·
+  <a href="#contributing">Contributing</a>
 </p>
 
 </div>
 
 ---
 
-## Contents
+## Try it now
 
-- [Project overview](#project-overview)
-- [Workspaces](#workspaces)
-- [Features](#features)
-- [How to use](#how-to-use)
-- [Input format](#input-format)
-- [Privacy and security](#privacy-and-security)
-- [Run locally](#run-locally)
-- [Project structure](#project-structure)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
+Start converting in three steps:
 
-## Project overview
+1. Open [RigForge](https://rigforge-mocha.vercel.app/).
+2. Paste avatar tokens or JSON data into the input panel. Lua output updates automatically.
+3. Review the result, select **Salin Kode** (Copy Code), then paste and test it in Roblox Studio.
 
-**RigForge** is an independent web application that converts raw Roblox avatar data into a structured Lua output you can review and copy into Roblox Studio. Avatar conversion runs in the browser and requires no account.
+![RigForge converter workspace illustration](docs/screenshots/en/converter.svg)
 
-The same repository also includes **Relay**, a separate workspace for keeping bot configuration in the browser, checking channel access, and sending messages through the Discord Bot API.
+To send a message through the Discord Bot API, open [Relay](https://rigforge-mocha.vercel.app/relay), enter an official Bot Token, choose a Channel ID slot, and test access before sending.
 
-## Workspaces
-
-<table>
-  <tr>
-    <td width="50%" valign="top">
-      <h3>RigForge / Avatar → Lua</h3>
-      <p>Convert avatar tokens and <code>AccessoryBlob</code> data into structured Lua output.</p>
-      <ul>
-        <li>Automatic conversion and Force Generate</li>
-        <li>Slot templates for clothing and accessories</li>
-        <li>Sample data, reset, and copy actions</li>
-        <li>Local browser processing</li>
-      </ul>
-      <a href="https://rigforge-mocha.vercel.app/">Open RigForge ↗</a>
-    </td>
-    <td width="50%" valign="top">
-      <h3>Relay / Discord</h3>
-      <p>A workspace for configuring a Bot Token, choosing a destination channel, and sending messages.</p>
-      <ul>
-        <li>Up to 10 Channel ID slots</li>
-        <li>Access checks before sending</li>
-        <li>Separate messages and code-block option</li>
-        <li>Delivery feedback and session history</li>
-      </ul>
-      <a href="https://rigforge-mocha.vercel.app/relay">Open Relay ↗</a>
-    </td>
-  </tr>
-</table>
+![Relay workspace illustration](docs/screenshots/en/relay.svg)
 
 ## Features
 
-### Avatar converter
+**Avatar conversion**
 
-- **Two input formats:** text tokens such as `Head: 12345` and JSON following `AccessoryBlob Data:`.
-- **Consistent output:** IDs are grouped into body parts, classic clothing, layered clothing, and accessories.
-- **Automatic slots:** minimum slots remain available, empty slots use `AssetId = 0`, and extra IDs extend their group.
-- **Duplicate handling:** repeated IDs within the same group are emitted once.
-- **Fast workflow:** load sample data, reset, regenerate, and copy Lua output.
-- **Light/dark themes** and a responsive layout for desktop and mobile.
+- Automatic conversion as input changes, plus **Generate Paksa** (Force Generate) for immediate conversion.
+- Supports text tokens such as `Head: 12345` and JSON following the `AccessoryBlob Data:` marker.
+- Groups data into body parts, classic clothing, layered clothing, and accessories.
+- Maintains minimum slot counts; empty slots use `AssetId = 0`, and extra IDs add rows.
+- Removes duplicate IDs within the same group.
+- Sample data, input reset, and Lua copy actions.
 
-### Relay
+**Relay / Discord**
 
-- Stores bot configuration in browser `localStorage` and supports up to 10 channel slots.
-- Checks channel access through the Discord Bot API before sending.
-- Sends whitespace-separated tokens/lines as individual messages, with optional code-block formatting.
-- Handles Discord `429` rate limits with a wait and a bounded retry policy.
-- Shows delivery feedback and a short history for the active session.
+- Configure an official Bot Token and up to 10 Channel ID slots.
+- Name slots, select an active channel, and keep configuration in browser storage.
+- Check channel access before sending.
+- Send messages through the Discord Bot API, with an optional code-block format.
+- Handles `429` rate limits with a wait and a bounded retry policy.
+- Delivery status and a short history for the active session.
+
+**Interface and quality**
+
+- Light and dark themes.
+- Responsive layout for desktop, tablet, and mobile.
+- Separate parser, UI components, Discord integration, and tests.
+- TypeScript, ESLint, Vitest unit tests, and production-build checks through GitHub Actions.
 
 ## How to use
 
-### RigForge
+### 1. Paste avatar data
 
-1. Open [RigForge](https://rigforge-mocha.vercel.app/).
-2. Paste avatar data into **Data mentah** (raw data), or select **Contoh Data** (sample data).
-3. The **Hasil Lua** output updates automatically. Use **Generate Paksa** to run conversion immediately.
-4. Review the output and select **Salin Kode** (copy code).
-5. Paste and test the script in Roblox Studio before using it.
+RigForge accepts avatar tokens and JSON `AccessoryBlob` data. Select **Contoh Data** (Sample Data) to try the converter without preparing your own input.
 
-### Relay
+![Avatar input example](docs/screenshots/en/input-format.svg)
+
+### 2. Review and copy Lua output
+
+Output is generated automatically. Use **Generate Paksa** (Force Generate) to run conversion immediately, then select **Salin Kode** (Copy Code) to copy the full result.
+
+![Conversion workflow](docs/screenshots/en/workflow.svg)
+
+### 3. Set up Relay when you need to send a message
 
 1. Open [Relay](https://rigforge-mocha.vercel.app/relay).
-2. Paste a Bot Token from the Discord Developer Portal.
-3. Set a label and Channel ID, then select the active slot.
-4. Test the connection and channel access.
-5. Write the message, verify the destination, then send.
+2. Paste a Bot Token from the [Discord Developer Portal](https://discord.com/developers/applications).
+3. Add and save a Channel ID in the desired slot, then select that active slot.
+4. Test channel access. Make sure the bot has joined the server and has the required permissions.
+5. Write the message, review the destination, and send it.
 
-> Relay can send real messages. Test in a safe channel and verify the bot has the correct permissions.
+![Relay configuration and message workflow](docs/screenshots/en/relay.svg)
 
 ## Input format
 
-The parser searches the full text and is case-insensitive. Example:
+The parser searches the full text and is case-insensitive.
 
 ```text
 Head: 12345
@@ -123,27 +109,40 @@ HairAccessory: 45678, 56789
 Body Color: 242,215,205 (#F2D7CD)
 ```
 
-| Group | Example tokens |
-| --- | --- |
+| Group | Tokens or format |
+| ----- | ---------------- |
 | Body parts | `Head`, `Torso`, `LeftArm`, `RightArm`, `LeftLeg`, `RightLeg` |
-| Classic clothing | `Pants`, `Shirt`, `TShirt` |
-| Skin tone | `Body Color` with RGB or hex values |
+| Classic clothing | `Pants`, `Shirt`, `TShirt`; `T-Shirt` and `Tshirt` are also recognized |
+| Skin tone | `Body Color` with RGB; a hex value in parentheses takes priority |
 | Accessories | `Hat`, `HairAccessory`, `FaceAccessory`, `FrontAccessory`, `NeckAccessory`, `BackAccessory`, `ShoulderAccessory`, `WaistAccessory` |
-| JSON data | `AccessoryBlob Data:` followed by a JSON array |
+| JSON data | `AccessoryBlob Data:` followed by a JSON array using `AccessoryType` and `AssetId` properties |
 
-When present, `DynamicHead` replaces `Head`. Minimum slot counts are defined in `LAYERED_GROUPS` and `ACCESSORY_GROUPS` in `src/lib/converter.ts`. Extra IDs add rows; unrecognized accessory types create a new group.
+![Avatar input format guide](docs/screenshots/en/input-format.svg)
 
-## Privacy and security
+### Slot rules
 
-- **RigForge:** avatar input is processed in the browser and is not sent to the RigForge conversion server.
-- **Relay:** bot configuration is stored in browser `localStorage`. Channel checks and message delivery are forwarded through a Next.js API Route to Discord.
-- Keep your Bot Token private. Never share it in issues, public screenshots, or messages.
-- Use an official token from the Discord Developer Portal; personal-account tokens and self-bots are not supported.
-- Review and test generated Lua in Roblox Studio before use.
+Minimum slot counts are configured through `LAYERED_GROUPS` and `ACCESSORY_GROUPS` in `src/lib/converter.ts`.
 
-On shared devices, clear site data after use so browser-stored configuration is not left behind.
+| Group | Minimum slots |
+| ----- | ------------- |
+| `Clothes.Layered` | `LeftShoe` 2, `RightShoe` 2, `TShirt` 3, `Shirt` 3, `Pants` 3, `Shorts` 3, `DressSkirt` 3, `Sweater` 3, `Jacket` 4 |
+| `Accessories` | `Hat` 3, `Hair` 3, `Face` 7, `Front` 3, `Neck` 3, `Back` 3, `Shoulder` 3, `Waist` 3 |
 
-## Run locally
+Unused slots use `AssetId = 0`. Extra IDs add rows to the relevant group, while duplicate IDs within a group are emitted once. Unrecognized accessory types receive a new group. See the [input format guide](docs/INPUT_FORMAT.md) for details.
+
+## Privacy
+
+- **RigForge avatar input** is processed in the browser and is not uploaded to the conversion server.
+- **Relay configuration**, including the Bot Token and channel slots, is stored in browser `localStorage`.
+- When checking access or sending a message, Relay calls the app API, which forwards the request to Discord. The API route does not store or log the Bot Token.
+- Use an official token from the Discord Developer Portal. Personal-account tokens and self-bots are not supported.
+- Never publish or commit a token. On shared devices, clear the site's data after use.
+
+![Illustration of processing and request flow](docs/screenshots/en/privacy.svg)
+
+## Development
+
+### Run locally
 
 **Requirements:** Node.js 22.x, npm, and Git.
 
@@ -156,69 +155,97 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-### Development commands
-
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start the development server. |
-| `npm run lint` | Run ESLint. |
-| `npm run typecheck` | Check TypeScript types. |
-| `npm run test` | Run Vitest unit tests. |
-| `npm run build` | Create a production build. |
-| `npm run start` | Run the local production build. |
-
-Pre-release checks:
+### Tests and quality checks
 
 ```bash
-npm run lint
 npm run typecheck
+npm run lint
 npm run test
 npm run build
 ```
 
-The standard workflow does not require additional environment variables. Testing Relay against Discord requires a valid Bot Token and a channel the bot can access.
+| Command | Purpose |
+| ------- | ------- |
+| `npm run dev` | Start the Next.js development server |
+| `npm run typecheck` | Check TypeScript types |
+| `npm run lint` | Run ESLint |
+| `npm run test` | Run Vitest unit tests |
+| `npm run build` | Create a production build |
+| `npm run start` | Run the production build locally |
 
-## Project structure
+### Deploy to Vercel
 
-```text
-src/
-├── app/                 # Next.js pages and API Routes
-├── components/          # RigForge and Relay UI components
-├── hooks/               # Theme and Relay configuration
-├── lib/
-│   ├── converter.ts     # Avatar parser and Lua generator
-│   ├── relay/           # Discord integration and types
-│   └── __fixtures__/    # Converter test fixtures
-└── styles/              # Design tokens and UI styles
-docs/                    # Guides, diagrams, and documentation assets
-```
-
-## Deployment
-
-### Vercel
-
-1. Import `akndrn000/rigforge` in [Vercel](https://vercel.com/).
-2. Confirm Next.js is detected and Node.js 22.x is selected.
+1. Import `akndrn000/rigforge` through [Vercel](https://vercel.com/).
+2. Confirm that Next.js is detected and Node.js 22.x is selected.
 3. Deploy. RigForge and Relay are served from the same deployment.
 
-For a production deployment with the CLI:
+Production deployment via CLI:
 
 ```bash
 npx vercel --prod
 ```
 
-After deployment, test conversion, clipboard copying, theme switching, Relay configuration, channel checks, and sending to a test channel.
+### Tech stack
+
+- **Next.js** and **React** for the web application.
+- **TypeScript** for type safety during development.
+- **CSS** for the design system and responsive interface.
+- **Discord Bot API** for Relay channel checks and message delivery.
+- **Vitest**, **ESLint**, and **TypeScript** for quality checks.
+- **Vercel** for hosting.
+
+### Directory structure
+
+```text
+src/
+├── app/
+│   ├── api/discord/
+│   │   ├── check/route.ts   # Validate Bot Token and channel access
+│   │   └── send/route.ts    # Forward messages to Discord
+│   ├── relay/               # Relay page
+│   └── page.tsx             # Main page
+├── components/              # Converter, Relay, header, and footer UI
+├── hooks/                   # Theme and Relay configuration
+├── lib/
+│   ├── converter.ts         # Avatar parser and Lua generator
+│   ├── relay/               # Discord integration and types
+│   └── __fixtures__/        # Converter test fixtures
+└── styles/                  # Design tokens and UI styles
+
+docs/
+├── logo.svg                 # README logo
+├── screenshots/             # Interface illustrations and guides
+└── INPUT_FORMAT.md          # Input format reference
+```
+
+### Known limitations
+
+- RigForge has no file-download action; output must be copied through the clipboard.
+- Converter input is not saved as history after page reload.
+- Relay configuration is stored in the browser and does not sync across devices.
+- Relay sends real messages to the selected channel. Always verify the destination and content before sending.
 
 ## Contributing
 
-Issues and pull requests are welcome. Include clear reproduction steps for bugs. For parser or generator changes, add representative input/output and update `src/lib/__fixtures__/golden.json` when expected output changes.
+Contributions are welcome.
 
-## License
+1. Fork the repository and create a branch for your change.
+2. Run `npm ci`, and add or update tests when application logic changes.
+3. Ensure these checks pass:
 
-RigForge is released under the [MIT License](LICENSE). It is an independent project and is not affiliated with Roblox Corporation or Discord Inc. Roblox and Discord are trademarks of their respective owners.
+   ```bash
+   npm run typecheck
+   npm run lint
+   npm run test
+   npm run build
+   ```
+
+4. Open a Pull Request with a concise summary and rationale. For bugs, include reproduction steps and safe sample input—never include a Bot Token or other secrets.
+
+RigForge is an independent project and is not affiliated with Roblox Corporation or Discord Inc. It is released under the [MIT License](LICENSE).
 
 ---
 
 <div align="center">
-  <sub>Built to keep avatar conversion and message delivery clear, structured, and practical.</sub>
+  <sub>RigForge — structured avatar conversion that stays simple and browser-based.</sub>
 </div>
