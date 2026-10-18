@@ -35,55 +35,13 @@
   min-width: 0;
 }
 
-/* Satu ikon untuk berpindah seluruh workspace RigForge ↔ Relay. */
+/* Grup brand dan ikon untuk berpindah antara workspace. */
 .site-header__brand-group {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   min-width: 0;
 }
-.app-switcher-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 48px;
-  width: 48px;
-  min-width: 48px;
-  min-height: 44px;
-  padding: 6px 2px;
-  margin: 0;
-  color: var(--c-blue, #78aaff);
-  background: transparent;
-  border: 0;
-  border-radius: 10px;
-  box-shadow: none;
-  text-decoration: none;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform var(--dur-fast, 120ms) var(--ease-pop, ease), opacity 120ms ease;
-}
-.app-switcher-icon svg {
-  display: block;
-  width: 44px;
-  height: 18px;
-  overflow: visible;
-  animation: zig-sway 3s ease-in-out infinite alternate;
-}
-.app-switcher-icon:hover {
-  transform: translateY(-2px) scale(1.04);
-  opacity: 0.88;
-}
-.app-switcher-icon:active {
-  transform: translateY(1px) scale(0.97);
-}
-.app-switcher-icon:focus-visible {
-  outline: 2px solid var(--c-blue, #78aaff);
-  outline-offset: 2px;
-}
-.relay-app .app-switcher-icon {
-  color: var(--c-blue, #78aaff);
-}
-
 /* Stiker logo: kotak kuning 48px miring -4deg, border + shadow #111
    di kedua mode (berdiri di atas blok kuningnya sendiri, aturan 2a). */
 .brand__mark {
@@ -120,14 +78,6 @@
   white-space: nowrap;
   background: linear-gradient(transparent 60%, var(--accent-3) 60%);
 }
-/* Zigzag dekoratif di dekat logo: tanpa teks, non-interaktif. */
-.deco-zig {
-  display: inline-flex;
-  flex: none;
-  margin-left: 4px;
-  pointer-events: none;
-}
-
 /* ============ Tombol + tombol ikon ============ */
 .btn,
 .icon-btn {
@@ -662,15 +612,6 @@
 .pane--output:hover .deco-burst svg {
   --burst-dur: 8s;
 }
-/* Zigzag: bergelombang horizontal ±3px. */
-.deco-zig svg {
-  animation: zig-sway 3s ease-in-out infinite alternate;
-}
-@keyframes zig-sway {
-  from { transform: translateX(-3px); }
-  to { transform: translateX(3px); }
-}
-
 /* ---------- C. Logo: goyang saat hover, lompat saat klik ---------- */
 @keyframes logo-wiggle {
   0% { transform: rotate(-4deg); }

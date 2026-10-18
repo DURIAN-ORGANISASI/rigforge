@@ -6,7 +6,6 @@ import "./globals.css";
 import "../styles/tokens.css";
 import "../styles/base.css";
 import "../styles/site.css";
-import "../styles/landing.css";
 import "../styles/redesign.css";
 import "../styles/workspace-parity.css";
 
