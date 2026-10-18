@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/logo.svg" alt="RigForge" width="96" height="96">
+<img src="https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/logo.svg" alt="RigForge" width="84" height="84">
 
 # RigForge
 
@@ -17,7 +17,7 @@
 
 <p><a href="README.md">Bahasa Indonesia</a> · <a href="README.en.md">English</a></p>
 
-<p><b>Konversi data avatar Roblox menjadi struktur Lua langsung di browser.</b> RigForge menyediakan panel konversi avatar, sementara Relay menjadi workspace terpisah untuk konfigurasi Discord Bot dan pengiriman pesan.</p>
+<p><strong>Konversi data avatar Roblox menjadi struktur Lua langsung di browser.</strong> RigForge menyediakan panel konversi avatar, sementara Relay menjadi workspace terpisah untuk konfigurasi Discord Bot dan pengiriman pesan.</p>
 
 <p>
   <a href="#coba-sekarang">Coba sekarang</a> ·
