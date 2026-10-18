@@ -38,3 +38,7 @@ The list of groups is defined in `src/lib/converter.ts` through `LAYERED_GROUPS`
 ## Review your output
 
 The output is a generated Lua structure. Review it, then test it in Roblox Studio before using it in a project. RigForge does not upload the avatar input to its conversion server.
+
+## Format provenance
+
+This file describes the input syntax currently supported by RigForge. The `AccessoryBlob Data:` marker and token conventions are documented here as project parser behavior; they should not be interpreted as a guarantee of an official, public, or stable Roblox avatar export format. See [Sources and Credits](SOURCES.md) for upstream documentation references.

@@ -5,13 +5,14 @@
 # RigForge
 
 <p>
+  <a href="https://github.com/akndrn000/rigforge/actions/workflows/verify.yml"><img alt="CI checks" src="https://img.shields.io/github/actions/workflow/status/akndrn000/rigforge/verify.yml?branch=main&label=CI&logo=githubactions&logoColor=white"></a>
   <a href="https://nextjs.org/"><img alt="Next.js" src="https://img.shields.io/badge/Next.js-111827?style=flat&logo=nextdotjs&logoColor=white"></a>
   <a href="https://react.dev/"><img alt="React" src="https://img.shields.io/badge/React-087EA4?style=flat&logo=react&logoColor=white"></a>
   <a href="https://www.typescriptlang.org/"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white"></a>
   <a href="https://vercel.com/"><img alt="Vercel" src="https://img.shields.io/badge/Vercel-111827?style=flat&logo=vercel&logoColor=white"></a>
   <a href="https://vitest.dev/"><img alt="Vitest" src="https://img.shields.io/badge/Vitest-6E9F18?style=flat&logo=vitest&logoColor=white"></a>
   <a href="https://eslint.org/"><img alt="ESLint" src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white"></a>
-  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-4AD7B1?style=flat"></a>
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/github/license/akndrn000/rigforge?label=license"></a>
 </p>
 
 <p><a href="README.md">Bahasa Indonesia</a> · <a href="README.en.md">English</a></p>
@@ -24,6 +25,7 @@
   <a href="#how-to-use">How to use</a> ·
   <a href="#input-format">Input format</a> ·
   <a href="#privacy">Privacy</a> ·
+  <a href="#sources-credits-and-license">Sources &amp; license</a> ·
   <a href="#development">Development</a> ·
   <a href="#contributing">Contributing</a>
 </p>
@@ -63,7 +65,7 @@ To send a message through the Discord Bot API, open [Relay](https://rigforge-moc
 - Name slots, select an active channel, and keep configuration in browser storage.
 - Check channel access before sending.
 - Send messages through the Discord Bot API, with an optional code-block format.
-- Handles `429` rate limits with a wait and a bounded retry policy.
+- Detects Discord `429` rate-limit responses and returns a retry-after hint; the server does not automatically resend the message.
 - Delivery status and a short history for the active session.
 
 **Interface and quality**
@@ -117,7 +119,6 @@ Body Color: 242,215,205 (#F2D7CD)
 | Accessories | `Hat`, `HairAccessory`, `FaceAccessory`, `FrontAccessory`, `NeckAccessory`, `BackAccessory`, `ShoulderAccessory`, `WaistAccessory` |
 | JSON data | `AccessoryBlob Data:` followed by a JSON array using `AccessoryType` and `AssetId` properties |
 
-![Avatar input format guide](docs/screenshots/en/input-format.svg)
 
 ### Slot rules
 
@@ -134,9 +135,10 @@ Unused slots use `AssetId = 0`. Extra IDs add rows to the relevant group, while 
 
 - **RigForge avatar input** is processed in the browser and is not uploaded to the conversion server.
 - **Relay configuration**, including the Bot Token and channel slots, is stored in browser `localStorage`.
-- When checking access or sending a message, Relay calls the app API, which forwards the request to Discord. The API route does not store or log the Bot Token.
+- When checking access or sending a message, Relay calls the app API, which forwards the request to Discord. The API routes are designed not to store or log the Bot Token.
+- Relay stores the token in browser `localStorage`. Anyone with access to that browser profile may be able to read it; use a trusted device and grant the bot only the permissions it needs.
 - Use an official token from the Discord Developer Portal. Personal-account tokens and self-bots are not supported.
-- Never publish or commit a token. On shared devices, clear the site's data after use.
+- Never publish or commit a token. Reset it in the Discord Developer Portal if exposed. On shared devices, clear the site's data after use.
 
 ![Illustration of processing and request flow](docs/screenshots/en/privacy.svg)
 
@@ -215,8 +217,11 @@ src/
 docs/
 ├── logo.svg                 # README logo
 ├── screenshots/             # Interface illustrations and guides
-└── INPUT_FORMAT.md          # Input format reference
+├── INPUT_FORMAT.md          # Input format reference
+└── SOURCES.md               # Documentation references and attribution
 ```
+
+Root maintenance files: `LICENSE`, `CONTRIBUTING.md`, and `SECURITY.md`.
 
 ### Known limitations
 
@@ -225,9 +230,26 @@ docs/
 - Relay configuration is stored in the browser and does not sync across devices.
 - Relay sends real messages to the selected channel. Always verify the destination and content before sending.
 
+## Sources, credits, and license
+
+### Reference sources
+
+- [Roblox Creator Hub — Avatar](https://create.roblox.com/docs/avatar) for general terminology such as body parts, classic clothing, and layered accessories. The token syntax and `AccessoryBlob Data` structure accepted by RigForge are documented in the [project input guide](docs/INPUT_FORMAT.md); this project does not claim that format is an official Roblox export schema.
+- [Discord Developer Documentation](https://discord.com/developers/docs/intro), including [OAuth2 and bot authorization](https://discord.com/developers/docs/topics/oauth2), [Create Message](https://discord.com/developers/docs/resources/message#create-message), and [rate limits](https://discord.com/developers/docs/topics/rate-limits) for the Relay integration.
+- Official documentation for [Next.js](https://nextjs.org/docs), [React](https://react.dev/learn), [TypeScript](https://www.typescriptlang.org/docs/), [Vitest](https://vitest.dev/guide/), [ESLint](https://eslint.org/docs/latest/), and [Vercel](https://vercel.com/docs) is used as technology reference material.
+- See [docs/SOURCES.md](docs/SOURCES.md) for the fuller reference list and attribution notes.
+
+The logo and SVG illustrations in `docs/` are project documentation visuals, not guaranteed screenshots of the live deployment. Roblox, Discord, and other third-party names and marks remain the property of their respective owners.
+
+### MIT License
+
+The code and project material covered by this repository are released under the [MIT License](LICENSE). The root `LICENSE` file is authoritative; when redistributing covered portions, retain the MIT copyright and permission notice. This license does not grant rights to third-party trademarks, services, or materials. Dependencies remain subject to their own licenses; see `package.json`, `package-lock.json`, and upstream documentation.
+
+RigForge is an independent project and is not affiliated with Roblox Corporation or Discord Inc.
+
 ## Contributing
 
-Contributions are welcome.
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow and expected checks, and [SECURITY.md](SECURITY.md) for vulnerability reporting.
 
 1. Fork the repository and create a branch for your change.
 2. Run `npm ci`, and add or update tests when application logic changes.
@@ -242,7 +264,6 @@ Contributions are welcome.
 
 4. Open a Pull Request with a concise summary and rationale. For bugs, include reproduction steps and safe sample input—never include a Bot Token or other secrets.
 
-RigForge is an independent project and is not affiliated with Roblox Corporation or Discord Inc. It is released under the [MIT License](LICENSE).
 
 ---
 
