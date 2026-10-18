@@ -87,7 +87,7 @@ RigForge menerima daftar token avatar maupun data JSON `AccessoryBlob`. Gunakan 
 
 Output dibuat otomatis. Gunakan **Generate Paksa** bila ingin menjalankan konversi saat itu juga, lalu tekan **Salin Kode** untuk menyalin seluruh hasil.
 
-![Alur kerja konversi](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/workflow.svg)
+![Alur kerja konversi](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/workflow-v2.svg)
 
 ### 3. Siapkan Relay jika perlu mengirim pesan
 
