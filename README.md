@@ -119,7 +119,6 @@ Body Color: 242,215,205 (#F2D7CD)
 | Aksesori | `Hat`, `HairAccessory`, `FaceAccessory`, `FrontAccessory`, `NeckAccessory`, `BackAccessory`, `ShoulderAccessory`, `WaistAccessory` |
 | Data JSON | Penanda `AccessoryBlob Data:` diikuti array JSON dengan properti `AccessoryType` dan `AssetId` |
 
-![Panduan format input avatar](docs/screenshots/input-format.svg)
 
 ### Aturan slot
 
@@ -222,6 +221,8 @@ docs/
 └── SOURCES.md               # Sumber dokumentasi dan atribusi
 ```
 
+File pemeliharaan di root: `LICENSE`, `CONTRIBUTING.md`, dan `SECURITY.md`.
+
 ### Batasan yang diketahui
 
 - RigForge tidak menyediakan tombol unduh file; output disalin melalui clipboard.
@@ -263,7 +264,6 @@ Kontribusi dipersilakan. Baca [CONTRIBUTING.md](CONTRIBUTING.md) untuk alur kerj
 
 4. Buka Pull Request dengan ringkasan perubahan dan alasan. Untuk laporan bug, sertakan langkah reproduksi dan contoh input yang aman—tanpa Bot Token atau data rahasia.
 
-Laporan bug harus menyertakan langkah reproduksi dan contoh input aman. Jangan sertakan Bot Token, kredensial, atau data pribadi.
 
 ---
 
