@@ -429,3 +429,24 @@ button, a { -webkit-tap-highlight-color: transparent; }
     padding-bottom: 18px;
   }
 }
+
+
+/* The workspace icon is the only workspace switch control. */
+.brand__mark--switch {
+  flex: 0 0 44px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.brand:hover .brand__mark--switch { transform: none; }
+.brand__mark--switch:hover {
+  transform: translateY(-2px) rotate(-3deg);
+  box-shadow: 0 12px 24px rgba(46, 128, 238, .28);
+}
+.brand__mark--switch:active { transform: translateY(0) scale(.96); }
+.brand__mark--switch:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+}
+@media (max-width: 680px) {
+  .brand__mark--switch { flex-basis: 38px; }
+}
