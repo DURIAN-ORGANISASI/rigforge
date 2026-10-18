@@ -77,7 +77,7 @@ export function ConfigPanel({ config }: { config: BotConfig }) {
   const channelInvalid =
     draft.channelId.trim() !== "" && !isValidChannelId(draft.channelId.trim());
 
-  const canTest = !testing && token.trim() !== "";
+  const canTest = !testing && token.trim() !== "" && !dirty && !channelInvalid;
   const activeDraftLabel = draft.label.trim() || `Slot ${activeSlotId}`;
 
   return (
@@ -246,16 +246,22 @@ export function ConfigPanel({ config }: { config: BotConfig }) {
             </button>
           )}
         </div>
-        <p className="text-xs opacity-60">
-          {activeChannelId.trim() ? (
-            <>
-              Tes memakai slot aktif: <span className="font-semibold">{activeDraftLabel}</span>
-              {" "}({activeChannelId.trim()}).
-            </>
-          ) : (
-            <>Belum ada Channel ID tersimpan. Tombol ini tetap dapat memeriksa Bot Token saja.</>
-          )}
-        </p>
+        {dirty ? (
+          <p className="text-xs font-semibold" role="status">
+            Slot ini belum disimpan. Tekan “Simpan” dahulu; Cek Status hanya menguji Channel ID yang sudah tersimpan.
+          </p>
+        ) : (
+          <p className="text-xs opacity-60">
+            {activeChannelId.trim() ? (
+              <>
+                Tes memakai slot aktif: <span className="font-semibold">{activeDraftLabel}</span>
+                {" "}({activeChannelId.trim()}).
+              </>
+            ) : (
+              <>Belum ada Channel ID tersimpan. Tombol ini tetap dapat memeriksa Bot Token saja.</>
+            )}
+          </p>
+        )}
 
         {/* Hasil tes */}
         {lastCheck?.ok && (
