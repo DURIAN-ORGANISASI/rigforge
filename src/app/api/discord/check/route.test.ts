@@ -40,7 +40,7 @@ describe("POST /api/discord/check", () => {
   it("reports a valid token separately when a channel is inaccessible", async () => {
     mockFetch
       .mockResolvedValueOnce(jsonResponse({ id: "123", username: "RigForgeBot", bot: true }))
-      .mockResolvedValueOnce(jsonResponse({ message: "Missing Access" }, 403));
+      .mockResolvedValueOnce(jsonResponse({ message: "Missing Access", code: 50001 }, 403));
     const response = await POST(request({ token: "abc.def.ghi", channelId: "123456789012345678" }));
     const data = await response.json();
 
@@ -49,7 +49,24 @@ describe("POST /api/discord/check", () => {
       ok: false, status: "gagal", tokenValid: true,
       channelChecked: false, botUsername: "RigForgeBot",
     });
-    expect(data.error).toContain("Bot Token valid");
+    expect(data.error).toContain("Missing Access (50001)");
+    expect(data).toMatchObject({
+      discordCode: 50001,
+      inviteUrl: "https://discord.com/oauth2/authorize?client_id=123&scope=bot&permissions=3072",
+    });
+  });
+
+  it("distinguishes Missing Permissions from Missing Access", async () => {
+    mockFetch
+      .mockResolvedValueOnce(jsonResponse({ id: "123", username: "RigForgeBot", bot: true }))
+      .mockResolvedValueOnce(jsonResponse({ message: "Missing Permissions", code: 50013 }, 403));
+
+    const response = await POST(request({ token: "abc.def.ghi", channelId: "123456789012345678" }));
+    const data = await response.json();
+
+    expect(data.tokenValid).toBe(true);
+    expect(data.discordCode).toBe(50013);
+    expect(data.error).toContain("Missing Permissions (50013)");
   });
 
   it("does not claim the token is invalid when Discord cannot be reached", async () => {

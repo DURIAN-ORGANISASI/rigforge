@@ -14,6 +14,10 @@ export interface CheckStatusResult {
   tokenValid?: boolean;
   /** False when only the token was checked or channel validation failed. */
   channelChecked?: boolean;
+  /** Discord API error code, when available, for actionable diagnostics. */
+  discordCode?: number;
+  /** OAuth2 URL to invite the validated bot with minimal default permissions. */
+  inviteUrl?: string;
   botUsername?: string;
   botId?: string;
   channelName?: string;

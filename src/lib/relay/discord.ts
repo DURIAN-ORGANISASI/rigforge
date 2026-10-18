@@ -44,6 +44,8 @@ export async function checkBotStatus(
         channelChecked: typeof data.channelChecked === "boolean" ? data.channelChecked : undefined,
         botUsername: typeof data.botUsername === "string" ? data.botUsername : undefined,
         botId: typeof data.botId === "string" ? data.botId : undefined,
+        discordCode: typeof data.discordCode === "number" ? data.discordCode : undefined,
+        inviteUrl: typeof data.inviteUrl === "string" ? data.inviteUrl : undefined,
         error: typeof data.error === "string" ? data.error : "Gagal menguji koneksi bot.",
       };
     }

@@ -10,14 +10,33 @@ function bad(message: string, status = 400, extra: Partial<CheckStatusResult> = 
   return NextResponse.json({ ...extra, ok: false, status: "gagal", error: message }, { status });
 }
 
-function discordError(status: number, context: "bot" | "channel"): string {
-  if (status === 401) return "Discord menolak Bot Token (401 Unauthorized). Pastikan token berasal dari Developer Portal → Bot. Token yang ditempel boleh berupa token mentah atau diawali 'Bot '.";
-  if (status === 403) return context === "bot"
-    ? "Discord menolak kredensial bot (403 Forbidden). Buat ulang Bot Token resmi dari Discord Developer Portal."
-    : "Bot Token valid, tetapi bot tidak dapat mengakses channel ini (403 Forbidden). Pastikan bot berada di server yang benar dan memiliki izin View Channel.";
-  if (status === 404) return context === "channel"
-    ? "Bot Token valid, tetapi channel tidak ditemukan atau tidak dapat dilihat (404). Periksa Channel ID dan pastikan bot berada di server tersebut."
-    : "Endpoint Discord tidak ditemukan (404). Coba lagi nanti.";
+function discordError(
+  status: number,
+  context: "bot" | "channel",
+  code?: number,
+  apiMessage?: string,
+): string {
+  if (status === 401) {
+    return "Discord menolak Bot Token (401 Unauthorized). Gunakan token dari Developer Portal → Bot. Token boleh ditempel dengan atau tanpa prefix 'Bot '.";
+  }
+  if (status === 403 && context === "bot") {
+    return "Discord menolak kredensial bot (403 Forbidden). Buat ulang Bot Token resmi dari Developer Portal.";
+  }
+  if (status === 403 && context === "channel") {
+    if (code === 50001 || /missing access/i.test(apiMessage ?? "")) {
+      return "Discord mengembalikan Missing Access (50001). Token valid, tetapi bot ini tidak dapat melihat channel. Pastikan bot yang cocok dengan token ini sudah diundang ke server yang benar, Channel ID benar, dan izin View Channel tidak ditolak oleh permission override.";
+    }
+    if (code === 50013 || /missing permissions/i.test(apiMessage ?? "")) {
+      return "Discord mengembalikan Missing Permissions (50013). Token valid, tetapi bot tidak memiliki izin yang diperlukan. Izinkan View Channel dan Send Messages pada channel tersebut.";
+    }
+    return "Discord menolak akses channel (HTTP 403" + (code ? ", code " + code : "") + "). Token valid. Periksa server/channel tujuan dan izin bot.";
+  }
+  if (status === 404 && context === "channel") {
+    return code === 10003
+      ? "Discord mengembalikan Unknown Channel (10003). Periksa bahwa ID yang disimpan adalah Channel ID, bukan Server ID atau Message ID."
+      : "Bot Token valid, tetapi Discord tidak menemukan channel ini. Periksa Channel ID dan pastikan bot berada di server yang sama.";
+  }
+  if (status === 404) return "Endpoint Discord tidak ditemukan (404). Coba lagi nanti.";
   if (status === 429) return "Discord membatasi permintaan (429). Tunggu beberapa detik lalu coba lagi.";
   if (status >= 500) return "Server Discord sedang bermasalah. Token belum tentu salah; coba lagi sebentar.";
   return "Discord mengembalikan status " + status + ". Periksa detail konfigurasi lalu coba lagi.";
@@ -73,6 +92,10 @@ export async function POST(req: Request): Promise<NextResponse<CheckStatusResult
     botId: me.id,
     botUsername: me.discriminator && me.discriminator !== "0" ? me.username + "#" + me.discriminator : me.username,
   };
+  // The bot user ID is also used as the OAuth2 client_id for this bot invite.
+  // This link requests only channel view + send-message defaults (1024 + 2048).
+  const inviteUrl = "https://discord.com/oauth2/authorize?client_id=" +
+    encodeURIComponent(me.id) + "&scope=bot&permissions=3072";
 
   // An empty Channel ID is a valid token-only check.
   if (!channelId) {
@@ -98,10 +121,23 @@ export async function POST(req: Request): Promise<NextResponse<CheckStatusResult
   }
 
   if (!chRes.ok) {
+    let apiError: { code?: unknown; message?: unknown } = {};
+    try {
+      apiError = (await chRes.json()) as { code?: unknown; message?: unknown };
+    } catch {
+      // Keep status-based diagnostics if Discord did not return JSON.
+    }
+    const discordCode = typeof apiError.code === "number" ? apiError.code : undefined;
+    const apiMessage = typeof apiError.message === "string" ? apiError.message : undefined;
     return bad(
-      discordError(chRes.status, "channel"),
+      discordError(chRes.status, "channel", discordCode, apiMessage),
       chRes.status === 429 ? 429 : chRes.status >= 500 ? 502 : 400,
-      { ...botInfo, channelChecked: false },
+      {
+        ...botInfo,
+        channelChecked: false,
+        discordCode,
+        inviteUrl: chRes.status === 403 ? inviteUrl : undefined,
+      },
     );
   }
 
