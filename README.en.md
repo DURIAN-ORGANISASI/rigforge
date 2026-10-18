@@ -87,7 +87,7 @@ RigForge accepts avatar tokens and JSON `AccessoryBlob` data. Select **Contoh Da
 
 Output is generated automatically. Use **Generate Paksa** (Force Generate) to run conversion immediately, then select **Salin Kode** (Copy Code) to copy the full result.
 
-![Conversion workflow](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/en/workflow.svg)
+![Conversion workflow](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/en/workflow-v2.svg)
 
 ### 3. Set up Relay when you need to send a message
 
