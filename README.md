@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/logo.svg" alt="RigForge" width="96" height="96">
+<img src="https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/logo.svg" alt="RigForge" width="96" height="96">
 
 # RigForge
 
@@ -42,11 +42,11 @@ Mulai konversi dalam tiga langkah:
 2. Tempel token avatar atau data JSON pada panel input. Hasil Lua akan diperbarui otomatis.
 3. Periksa hasilnya, tekan **Salin Kode**, lalu tempel dan uji di Roblox Studio.
 
-![Ilustrasi workspace konverter RigForge](docs/screenshots/converter.svg)
+![Ilustrasi workspace konverter RigForge](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/converter.svg)
 
 Untuk mengirim pesan melalui Discord Bot API, buka [Relay](https://rigforge-mocha.vercel.app/relay), masukkan Bot Token resmi, pilih slot Channel ID, lalu uji akses sebelum mengirim.
 
-![Ilustrasi workspace Relay](docs/screenshots/relay.svg)
+![Ilustrasi workspace Relay](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/relay.svg)
 
 ## Fitur
 
@@ -81,13 +81,13 @@ Untuk mengirim pesan melalui Discord Bot API, buka [Relay](https://rigforge-moch
 
 RigForge menerima daftar token avatar maupun data JSON `AccessoryBlob`. Gunakan **Contoh Data** bila ingin mencoba tanpa menyiapkan data sendiri.
 
-![Contoh input avatar](docs/screenshots/input-format.svg)
+![Contoh input avatar](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/input-format.svg)
 
 ### 2. Periksa dan salin hasil Lua
 
 Output dibuat otomatis. Gunakan **Generate Paksa** bila ingin menjalankan konversi saat itu juga, lalu tekan **Salin Kode** untuk menyalin seluruh hasil.
 
-![Alur kerja konversi](docs/screenshots/workflow.svg)
+![Alur kerja konversi](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/workflow.svg)
 
 ### 3. Siapkan Relay jika perlu mengirim pesan
 
@@ -97,7 +97,7 @@ Output dibuat otomatis. Gunakan **Generate Paksa** bila ingin menjalankan konver
 4. Jalankan pemeriksaan akses. Pastikan bot sudah masuk ke server dan punya izin yang sesuai.
 5. Tulis pesan, tinjau channel tujuan, lalu kirim.
 
-![Konfigurasi dan alur Relay](docs/screenshots/relay.svg)
+![Konfigurasi dan alur Relay](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/relay.svg)
 
 ## Format input
 
@@ -140,7 +140,7 @@ Slot yang tidak terisi menggunakan `AssetId = 0`. ID tambahan menambah baris pad
 - Gunakan Bot Token resmi dari Discord Developer Portal. Jangan gunakan token akun pribadi atau self-bot.
 - Jangan bagikan atau commit token. Jika token terpapar, reset dari Discord Developer Portal. Di perangkat bersama, hapus data situs setelah selesai.
 
-![Ilustrasi pemrosesan data dan alur request](docs/screenshots/privacy.svg)
+![Ilustrasi pemrosesan data dan alur request](https://raw.githubusercontent.com/akndrn000/rigforge/main/docs/screenshots/privacy.svg)
 
 ## Pengembangan
 
