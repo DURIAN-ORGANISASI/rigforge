@@ -5,13 +5,14 @@
 # RigForge
 
 <p>
+  <a href="https://github.com/akndrn000/rigforge/actions/workflows/verify.yml"><img alt="CI checks" src="https://img.shields.io/github/actions/workflow/status/akndrn000/rigforge/verify.yml?branch=main&label=CI&logo=githubactions&logoColor=white"></a>
   <a href="https://nextjs.org/"><img alt="Next.js" src="https://img.shields.io/badge/Next.js-111827?style=flat&logo=nextdotjs&logoColor=white"></a>
   <a href="https://react.dev/"><img alt="React" src="https://img.shields.io/badge/React-087EA4?style=flat&logo=react&logoColor=white"></a>
   <a href="https://www.typescriptlang.org/"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white"></a>
   <a href="https://vercel.com/"><img alt="Vercel" src="https://img.shields.io/badge/Vercel-111827?style=flat&logo=vercel&logoColor=white"></a>
   <a href="https://vitest.dev/"><img alt="Vitest" src="https://img.shields.io/badge/Vitest-6E9F18?style=flat&logo=vitest&logoColor=white"></a>
   <a href="https://eslint.org/"><img alt="ESLint" src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white"></a>
-  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-4AD7B1?style=flat"></a>
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/github/license/akndrn000/rigforge?label=license"></a>
 </p>
 
 <p><a href="README.md">Bahasa Indonesia</a> · <a href="README.en.md">English</a></p>
@@ -24,6 +25,7 @@
   <a href="#cara-pakai">Cara pakai</a> ·
   <a href="#format-input">Format input</a> ·
   <a href="#privasi">Privasi</a> ·
+  <a href="#sumber-atribusi-dan-lisensi">Sumber &amp; lisensi</a> ·
   <a href="#pengembangan">Pengembangan</a> ·
   <a href="#kontribusi">Kontribusi</a>
 </p>
@@ -63,7 +65,7 @@ Untuk mengirim pesan melalui Discord Bot API, buka [Relay](https://rigforge-moch
 - Label slot, pemilihan channel aktif, dan penyimpanan konfigurasi di browser.
 - Pemeriksaan akses channel sebelum pengiriman.
 - Mengirim pesan melalui Discord Bot API, dengan opsi format code block.
-- Menangani rate limit `429` dengan jeda dan percobaan ulang terbatas.
+- Mendeteksi rate limit `429` dan menampilkan saran waktu tunggu; server tidak mengirim ulang pesan secara otomatis.
 - Status pengiriman dan riwayat singkat untuk sesi aktif.
 
 **Antarmuka dan kualitas**
@@ -134,9 +136,10 @@ Slot yang tidak terisi menggunakan `AssetId = 0`. ID tambahan menambah baris pad
 
 - **Input avatar RigForge** diproses di browser dan tidak diunggah ke server konversi.
 - **Konfigurasi Relay** seperti Bot Token dan slot channel disimpan di `localStorage` browser.
-- Saat memeriksa akses atau mengirim pesan, Relay mengirim request ke API aplikasi, yang meneruskannya ke Discord. API route tidak menyimpan atau mencatat Bot Token.
+- Saat memeriksa akses atau mengirim pesan, Relay mengirim request ke API aplikasi, yang meneruskannya ke Discord. API route dirancang untuk tidak menyimpan atau mencatat Bot Token.
+- Token Relay disimpan di `localStorage` browser. Siapa pun yang mendapat akses ke profil browser dapat berpotensi membacanya; gunakan perangkat tepercaya dan izin bot seminimal mungkin.
 - Gunakan Bot Token resmi dari Discord Developer Portal. Jangan gunakan token akun pribadi atau self-bot.
-- Jangan bagikan atau commit token. Di perangkat bersama, hapus data situs setelah selesai.
+- Jangan bagikan atau commit token. Jika token terpapar, reset dari Discord Developer Portal. Di perangkat bersama, hapus data situs setelah selesai.
 
 ![Ilustrasi pemrosesan data dan alur request](docs/screenshots/privacy.svg)
 
@@ -215,7 +218,8 @@ src/
 docs/
 ├── logo.svg                 # Logo untuk README
 ├── screenshots/             # Ilustrasi antarmuka dan panduan
-└── INPUT_FORMAT.md          # Referensi format input
+├── INPUT_FORMAT.md          # Referensi format input
+└── SOURCES.md               # Sumber dokumentasi dan atribusi
 ```
 
 ### Batasan yang diketahui
@@ -225,9 +229,26 @@ docs/
 - Konfigurasi Relay tersimpan pada browser, sehingga tidak otomatis berpindah antarperangkat.
 - Relay mengirim pesan nyata ke channel terpilih. Selalu periksa tujuan dan isi pesan sebelum mengirim.
 
+## Sumber, atribusi, dan lisensi
+
+### Sumber rujukan
+
+- [Roblox Creator Hub — Avatar](https://create.roblox.com/docs/avatar) untuk istilah umum seperti bagian tubuh, pakaian klasik, dan aksesori berlapis. Format token serta struktur `AccessoryBlob Data` yang diterima RigForge dijelaskan dalam [panduan input proyek](docs/INPUT_FORMAT.md); format itu tidak diklaim sebagai skema ekspor resmi Roblox.
+- [Discord Developer Documentation](https://discord.com/developers/docs/intro), terutama [OAuth2 dan bot authorization](https://discord.com/developers/docs/topics/oauth2), [Create Message](https://discord.com/developers/docs/resources/message#create-message), dan [rate limits](https://discord.com/developers/docs/topics/rate-limits) untuk integrasi Relay.
+- Dokumentasi resmi [Next.js](https://nextjs.org/docs), [React](https://react.dev/learn), [TypeScript](https://www.typescriptlang.org/docs/), [Vitest](https://vitest.dev/guide/), [ESLint](https://eslint.org/docs/latest/), dan [Vercel](https://vercel.com/docs) sebagai referensi teknologi proyek.
+- Daftar referensi dan catatan atribusi yang lebih lengkap tersedia di [docs/SOURCES.md](docs/SOURCES.md).
+
+Logo dan ilustrasi SVG di folder `docs/` merupakan visual dokumentasi proyek, bukan jaminan tangkapan layar identik dengan tampilan deployment. Nama dan merek Roblox, Discord, dan produk pihak ketiga tetap menjadi milik pemiliknya masing-masing.
+
+### Lisensi MIT
+
+Kode dan materi proyek yang tercakup dalam repositori ini dirilis di bawah [MIT License](LICENSE). Teks `LICENSE` adalah rujukan resmi; saat mendistribusikan ulang bagian yang dilisensikan, pertahankan pemberitahuan hak cipta dan izin MIT. Lisensi proyek tidak memberikan hak atas merek dagang, layanan, atau materi pihak ketiga. Dependensi tetap tunduk pada lisensi masing-masing; lihat `package.json`, `package-lock.json`, dan dokumentasi upstream.
+
+RigForge adalah proyek independen dan tidak berafiliasi dengan Roblox Corporation atau Discord Inc.
+
 ## Kontribusi
 
-Kontribusi dipersilakan.
+Kontribusi dipersilakan. Baca [CONTRIBUTING.md](CONTRIBUTING.md) untuk alur kerja dan pemeriksaan yang diharapkan; kebijakan pelaporan kerentanan ada di [SECURITY.md](SECURITY.md).
 
 1. Fork repository dan buat branch untuk perubahan.
 2. Jalankan `npm ci`, lalu tambahkan atau perbarui tes jika logika berubah.
@@ -242,7 +263,7 @@ Kontribusi dipersilakan.
 
 4. Buka Pull Request dengan ringkasan perubahan dan alasan. Untuk laporan bug, sertakan langkah reproduksi dan contoh input yang aman—tanpa Bot Token atau data rahasia.
 
-RigForge adalah proyek independen dan tidak berafiliasi dengan Roblox Corporation atau Discord Inc. Dirilis di bawah [MIT License](LICENSE).
+Laporan bug harus menyertakan langkah reproduksi dan contoh input aman. Jangan sertakan Bot Token, kredensial, atau data pribadi.
 
 ---
 
