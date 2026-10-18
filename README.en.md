@@ -119,7 +119,6 @@ Body Color: 242,215,205 (#F2D7CD)
 | Accessories | `Hat`, `HairAccessory`, `FaceAccessory`, `FrontAccessory`, `NeckAccessory`, `BackAccessory`, `ShoulderAccessory`, `WaistAccessory` |
 | JSON data | `AccessoryBlob Data:` followed by a JSON array using `AccessoryType` and `AssetId` properties |
 
-![Avatar input format guide](docs/screenshots/en/input-format.svg)
 
 ### Slot rules
 
@@ -222,6 +221,8 @@ docs/
 └── SOURCES.md               # Documentation references and attribution
 ```
 
+Root maintenance files: `LICENSE`, `CONTRIBUTING.md`, and `SECURITY.md`.
+
 ### Known limitations
 
 - RigForge has no file-download action; output must be copied through the clipboard.
@@ -263,7 +264,6 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the workfl
 
 4. Open a Pull Request with a concise summary and rationale. For bugs, include reproduction steps and safe sample input—never include a Bot Token or other secrets.
 
-Bug reports should include reproduction steps and safe sample input. Never include Bot Tokens, credentials, or personal data.
 
 ---
 
