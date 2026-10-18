@@ -29,20 +29,32 @@ export async function checkBotStatus(
   token: string,
   channelId: string,
 ): Promise<CheckStatusResult> {
-  const res = await fetch("/api/discord/check", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ token, channelId }),
-  });
-  const data = await parseJsonSafe(res);
-  if (!res.ok) {
+  try {
+    const res = await fetch("/api/discord/check", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token, channelId }),
+    });
+    const data = await parseJsonSafe(res);
+    if (!res.ok) {
+      return {
+        ok: false,
+        status: "gagal",
+        tokenValid: typeof data.tokenValid === "boolean" ? data.tokenValid : undefined,
+        channelChecked: typeof data.channelChecked === "boolean" ? data.channelChecked : undefined,
+        botUsername: typeof data.botUsername === "string" ? data.botUsername : undefined,
+        botId: typeof data.botId === "string" ? data.botId : undefined,
+        error: typeof data.error === "string" ? data.error : "Gagal menguji koneksi bot.",
+      };
+    }
+    return data as unknown as CheckStatusResult;
+  } catch {
     return {
       ok: false,
       status: "gagal",
-      error: typeof data.error === "string" ? data.error : "Gagal menguji koneksi bot.",
+      error: "Tidak dapat menghubungi API Relay. Periksa deployment dan koneksi, lalu coba lagi.",
     };
   }
-  return data as unknown as CheckStatusResult;
 }
 
 /**

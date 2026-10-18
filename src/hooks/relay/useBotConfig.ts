@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { checkBotStatus } from "@/lib/relay/discord";
+import { normalizeBotToken } from "@/lib/relay/token";
 import type { BotStatus, ChannelSlot, CheckStatusResult } from "@/lib/relay/types";
 import {
   ACTIVE_SLOT_KEY,
@@ -59,12 +60,12 @@ export function useBotConfig() {
 
   // Inti pengetesan: dipakai manual via testConnection maupun otomatis
   // (saat mount / ganti slot aktif) bila kredensial lengkap.
-  const runCheck = useCallback(async (cleanToken: string, cleanChannelId: string) => {
-    if (!cleanToken || !cleanChannelId) {
+  const runCheck = useCallback(async (inputToken: string, inputChannelId: string) => {
+    const cleanToken = normalizeBotToken(inputToken);
+    const cleanChannelId = inputChannelId.trim();
+    if (!cleanToken) {
       const hasil: CheckStatusResult = {
-        ok: false,
-        status: "gagal",
-        error: "Isi dulu Bot Token dan Channel ID (pilih slot) sebelum mengetes koneksi.",
+        ok: false, status: "gagal", error: "Bot Token wajib diisi.",
       };
       setStatus("gagal");
       setLastCheck(hasil);
@@ -77,19 +78,18 @@ export function useBotConfig() {
     try {
       const hasil = await checkBotStatus(cleanToken, cleanChannelId);
       setLastCheck(hasil);
-      if (hasil.ok) {
-        // Sukses → baru simpan token ke localStorage
-        // (channel slot sudah tersimpan via tombol Simpan per slot).
+
+      // Persist a valid token even when the separate channel check fails.
+      if (hasil.tokenValid) {
         try {
           localStorage.setItem(TOKEN_KEY, cleanToken);
         } catch {
-          /* penyimpanan gagal, koneksi tetap dianggap aktif sesi ini */
+          /* localStorage is optional; this session can still use the token */
         }
         setSavedToken(cleanToken);
-        setStatus("aktif");
-      } else {
-        setStatus("gagal");
       }
+
+      setStatus(hasil.ok ? "aktif" : "gagal");
       return hasil;
     } finally {
       setTesting(false);
@@ -115,7 +115,7 @@ export function useBotConfig() {
       /* abaikan */
     }
     const loadedActiveId = loadActiveSlotId();
-    const t = readStorage(TOKEN_KEY).trim();
+    const t = normalizeBotToken(readStorage(TOKEN_KEY));
     setSlots(loadedSlots);
     setActiveSlotId(loadedActiveId);
     if (t) {
@@ -199,9 +199,9 @@ export function useBotConfig() {
     setToken,
     savedToken,
     /** True bila draft token masih sama dengan yang tersimpan. */
-    tokenMatchesSaved: token.trim() === savedToken,
+    tokenMatchesSaved: normalizeBotToken(token) === savedToken,
     /** Alias kompatibilitas (dulu membandingkan token+channel sekaligus). */
-    draftMatchesSaved: token.trim() === savedToken,
+    draftMatchesSaved: normalizeBotToken(token) === savedToken,
     slots,
     activeSlotId,
     activeSlot,

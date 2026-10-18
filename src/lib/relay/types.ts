@@ -10,6 +10,10 @@ export interface CheckStatusResult {
   ok: boolean;
   status: BotStatus;
   /** Username bot, mis. "RelayBot#1234" (tanpa discriminator bila tidak ada). */
+  /** True when Discord confirms a valid Bot Token, independent of channel access. */
+  tokenValid?: boolean;
+  /** False when only the token was checked or channel validation failed. */
+  channelChecked?: boolean;
   botUsername?: string;
   botId?: string;
   channelName?: string;

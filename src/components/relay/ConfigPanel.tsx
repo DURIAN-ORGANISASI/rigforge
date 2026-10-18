@@ -77,7 +77,7 @@ export function ConfigPanel({ config }: { config: BotConfig }) {
   const channelInvalid =
     draft.channelId.trim() !== "" && !isValidChannelId(draft.channelId.trim());
 
-  const canTest = !testing && token.trim() !== "" && activeChannelId.trim() !== "";
+  const canTest = !testing && token.trim() !== "";
   const activeDraftLabel = draft.label.trim() || `Slot ${activeSlotId}`;
 
   return (
@@ -247,14 +247,22 @@ export function ConfigPanel({ config }: { config: BotConfig }) {
           )}
         </div>
         <p className="text-xs opacity-60">
-          Tes memakai slot aktif: <span className="font-semibold">{activeDraftLabel}</span>
-          {activeChannelId.trim() && <> ({activeChannelId.trim()})</>}.
+          {activeChannelId.trim() ? (
+            <>
+              Tes memakai slot aktif: <span className="font-semibold">{activeDraftLabel}</span>
+              {" "}({activeChannelId.trim()}).
+            </>
+          ) : (
+            <>Belum ada Channel ID tersimpan. Tombol ini tetap dapat memeriksa Bot Token saja.</>
+          )}
         </p>
 
         {/* Hasil tes */}
         {lastCheck?.ok && (
-          <div className="sketch-panel-alt p-4 text-sm leading-6">
-            <p className="font-bold">Koneksi berhasil.</p>
+          <div className="sketch-panel-alt p-4 text-sm leading-6" role="status">
+            <p className="font-bold">
+              {lastCheck.channelChecked ? "Bot dan channel berhasil diverifikasi." : "Bot Token valid."}
+            </p>
             <p>
               Bot: <span className="font-semibold">{lastCheck.botUsername ?? "—"}</span>
               {lastCheck.channelName && (
@@ -264,6 +272,11 @@ export function ConfigPanel({ config }: { config: BotConfig }) {
               )}
               {lastCheck.guildName && <span className="opacity-70"> ({lastCheck.guildName})</span>}
             </p>
+            {!lastCheck.channelChecked && (
+              <p className="mt-1 text-xs opacity-70">
+                Token berhasil diperiksa. Simpan Channel ID pada slot aktif untuk memeriksa akses channel.
+              </p>
+            )}
             {!draftMatchesSaved && (
               <p className="mt-1 text-xs opacity-70">
                 Isi token berubah — tekan “Cek Status” lagi agar token tersimpan yang baru ikut aktif.
@@ -272,9 +285,19 @@ export function ConfigPanel({ config }: { config: BotConfig }) {
           </div>
         )}
         {lastCheck && !lastCheck.ok && (
-          <div className="sketch p-4 text-sm leading-6" role="alert">
-            <p className="font-bold">Koneksi gagal.</p>
+          <div
+            className={lastCheck.tokenValid ? "sketch-panel-alt p-4 text-sm leading-6" : "sketch p-4 text-sm leading-6"}
+            role={lastCheck.tokenValid ? "status" : "alert"}
+          >
+            <p className="font-bold">
+              {lastCheck.tokenValid ? "Bot Token valid, tetapi channel belum terverifikasi." : "Pemeriksaan gagal."}
+            </p>
             <p>{lastCheck.error ?? "Terjadi kesalahan yang tidak diketahui."}</p>
+            {lastCheck.tokenValid && (
+              <p className="mt-1 text-xs opacity-70">
+                Token sudah disimpan. Perbaiki Channel ID atau izin bot, lalu cek lagi.
+              </p>
+            )}
           </div>
         )}
 
