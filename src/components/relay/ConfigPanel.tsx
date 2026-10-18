@@ -299,9 +299,24 @@ export function ConfigPanel({ config }: { config: BotConfig }) {
               {lastCheck.tokenValid ? "Bot Token valid, tetapi channel belum terverifikasi." : "Pemeriksaan gagal."}
             </p>
             <p>{lastCheck.error ?? "Terjadi kesalahan yang tidak diketahui."}</p>
+            {lastCheck.discordCode && (
+              <p className="mt-1 text-xs opacity-70">Kode respons Discord: {lastCheck.discordCode}</p>
+            )}
             {lastCheck.tokenValid && (
               <p className="mt-1 text-xs opacity-70">
-                Token sudah disimpan. Perbaiki Channel ID atau izin bot, lalu cek lagi.
+                Token valid dan sudah disimpan. Jika bot sudah ada di server, periksa izin channel. Jika belum, undang bot yang sama dengan token ini.
+              </p>
+            )}
+            {lastCheck.inviteUrl && (
+              <p className="mt-3">
+                <a
+                  className="inline-flex items-center rounded-lg border px-3 py-2 text-xs font-bold underline"
+                  href={lastCheck.inviteUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Undang bot ke server dengan izin minimum ↗
+                </a>
               </p>
             )}
           </div>
