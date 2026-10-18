@@ -372,3 +372,60 @@ button, a { -webkit-tap-highlight-color: transparent; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Tool-first layout correction: keep both routes focused on the actual workspaces. */
+.rigforge-app .hero,
+.rigforge-app .how-it-works,
+.relay-app .relay-intro {
+  display: none !important;
+}
+.rigforge-app .section--tool,
+.relay-app .section--tool {
+  padding-top: clamp(16px, 2.5vh, 26px);
+  padding-bottom: 24px;
+}
+.rigforge-app .bench {
+  height: clamp(480px, calc(100dvh - 230px), 720px);
+  min-height: 480px;
+  align-items: stretch;
+}
+.rigforge-app .bench > .pane {
+  height: 100%;
+  min-height: 0;
+}
+.relay-app .relay-bench {
+  height: clamp(480px, calc(100dvh - 230px), 720px);
+  min-height: 480px;
+  align-items: stretch;
+}
+.relay-app .relay-bench > .relay-functional-pane {
+  height: 100%;
+  min-height: 0;
+}
+@media (max-width: 1040px) {
+  .relay-app .relay-bench {
+    height: auto;
+    min-height: 0;
+  }
+  .relay-app .relay-bench > .relay-functional-pane {
+    height: auto;
+    min-height: 460px;
+  }
+}
+@media (max-width: 900px) {
+  .rigforge-app .bench {
+    height: auto;
+    min-height: 0;
+  }
+  .rigforge-app .bench > .pane {
+    height: auto;
+    min-height: 430px;
+  }
+}
+@media (max-width: 680px) {
+  .rigforge-app .section--tool,
+  .relay-app .section--tool {
+    padding-top: 14px;
+    padding-bottom: 18px;
+  }
+}
