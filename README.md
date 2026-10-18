@@ -17,7 +17,8 @@
 
 <p><a href="README.md">Bahasa Indonesia</a> · <a href="README.en.md">English</a></p>
 
-<p><strong>Konversi data avatar Roblox menjadi struktur Lua langsung di browser.</strong> RigForge menyediakan panel konversi avatar, sementara Relay menjadi workspace terpisah untuk konfigurasi Discord Bot dan pengiriman pesan.</p>
+<p><strong>Konversi data avatar Roblox menjadi struktur Lua langsung di browser.</strong><br>
+RigForge menyediakan panel konversi avatar, sementara Relay menjadi workspace terpisah untuk konfigurasi Discord Bot dan pengiriman pesan.</p>
 
 <p>
   <a href="#coba-sekarang">Coba sekarang</a> ·
