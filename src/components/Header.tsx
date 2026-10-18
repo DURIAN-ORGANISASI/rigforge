@@ -12,7 +12,8 @@ type HeaderProps = {
 export function Header({ variant = "rigforge" }: HeaderProps) {
   const { theme, toggle } = useTheme();
   const isRelay = variant === "relay";
-  const homePath = isRelay ? "/relay" : "/";
+  const destination = isRelay ? "/" : "/relay";
+  const destinationName = isRelay ? "RigForge" : "Relay";
   const action = theme === "dark" ? "Ganti ke mode terang" : "Ganti ke mode gelap";
   const [swapping, setSwapping] = useState(false);
   const swapTimer = useRef<number | undefined>(undefined);
@@ -30,30 +31,23 @@ export function Header({ variant = "rigforge" }: HeaderProps) {
     <header className="site-header">
       <div className="container site-header__in">
         <div className="site-header__brand-group">
-          <Link className="brand" href={homePath} aria-label={isRelay ? "Relay home" : "RigForge home"}>
-            <span className="brand__mark">
+          <div className="brand">
+            <Link
+              className="brand__mark brand__mark--switch"
+              href={destination}
+              aria-label={`Beralih ke ${destinationName}`}
+              title={`Beralih ke ${destinationName}`}
+            >
               <Icon name={isRelay ? "arrow" : "brackets"} size={23} />
-            </span>
+            </Link>
             <span className="brand__text">
               <span className="brand__name">{isRelay ? "Relay" : "RigForge"}</span>
               <span className="brand__descriptor">
                 {isRelay ? "Discord message tools" : "Avatar data to Lua"}
               </span>
             </span>
-          </Link>
+          </div>
         </div>
-
-        <nav className="site-header__nav" aria-label="Pindah workspace">
-          {isRelay ? (
-            <Link className="site-header__nav-link site-header__nav-link--primary" href="/">
-              RigForge <Icon name="arrow" size={15} />
-            </Link>
-          ) : (
-            <Link className="site-header__nav-link site-header__nav-link--primary" href="/relay">
-              Relay <Icon name="arrow" size={15} />
-            </Link>
-          )}
-        </nav>
 
         <div className="site-header__actions">
           <button
