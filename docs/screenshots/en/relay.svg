@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-labelledby="title desc">
+<title id="title">Relay Discord workspace</title><desc id="desc">Illustrated Bot Token and channel configuration beside the message composer.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080D18"/><stop offset="1" stop-color="#111D31"/></linearGradient>
+<linearGradient id="ac" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4C8DFF"/><stop offset="1" stop-color="#4AD7E9"/></linearGradient>
+<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#8EABD6" fill-opacity=".12"/></pattern>
+</defs>
+<rect width="1200" height="360" rx="20" fill="url(#bg)"/><rect width="1200" height="360" rx="20" fill="url(#dots)"/>
+<rect x="1" y="1" width="1198" height="358" rx="19" fill="none" stroke="#2B405C"/>
+
+  <g transform="translate(32 26)"><text x="0" y="18" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="850" letter-spacing="1" fill="#DDEBFC">RELAY / DISCORD WORKSPACE</text><rect x="1040" y="0" width="126" height="28" rx="14" fill="#12372F" stroke="#236B59"/><circle cx="1057" cy="14" r="3.5" fill="#4AD7B1"/><text x="1068" y="18" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="800" fill="#A9F5DC">BOT WORKSPACE</text></g>
+  <g transform="translate(32 68)">
+  <rect width="554" height="240" rx="14" fill="#101B2C" stroke="#344A68"/><path d="M0 14Q0 0 14 0H540Q554 0 554 14V48H0Z" fill="#182941"/><path d="M0 48H554" stroke="#344A68"/>
+  <text x="20" y="29" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="800" fill="#EFF6FF">BOT CONFIGURATION</text>
+  <text x="20" y="75" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#B5C7DF">Bot Token</text>
+  <rect x="20" y="87" width="514" height="38" rx="8" fill="#0B1423" stroke="#314866"/><text x="34" y="111" font-family="ui-monospace,monospace" font-size="14" fill="#8CA4C2">••••••••••••••••••••</text>
+  <text x="20" y="151" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#B5C7DF">ACTIVE CHANNEL SLOT</text>
+  <rect x="20" y="163" width="328" height="37" rx="8" fill="#0B1423" stroke="#314866"/><text x="34" y="186" font-family="Inter,Arial,sans-serif" font-size="12" fill="#DCEAFB"># Channel ID · · ·</text>
+  <rect x="362" y="163" width="172" height="37" rx="8" fill="url(#ac)"/><text x="448" y="186" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="850" fill="#071321">CHECK ACCESS</text>
+  <circle cx="25" cy="220" r="3.5" fill="#4AD7B1"/><text x="36" y="224" font-family="Inter,Arial,sans-serif" font-size="10" fill="#91A8C6">Configuration stored in this browser</text>
+  </g>
+  <g transform="translate(614 68)">
+  <rect width="554" height="240" rx="14" fill="#0B1524" stroke="#2C596B"/><path d="M0 14Q0 0 14 0H540Q554 0 554 14V48H0Z" fill="#14293A"/><path d="M0 48H554" stroke="#2C596B"/>
+  <text x="20" y="29" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="800" fill="#EFF6FF">SEND MESSAGE</text>
+  <text x="20" y="75" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#B5C7DF">MESSAGE CONTENT</text>
+  <rect x="20" y="87" width="514" height="105" rx="8" fill="#0A1220" stroke="#314866"/><text x="34" y="111" font-family="Inter,Arial,sans-serif" font-size="12" fill="#7188A6">Paste a message or lines of codes here…</text><path d="M20 155H534" stroke="#20334B"/>
+  <rect x="351" y="203" width="183" height="26" rx="8" fill="url(#ac)"/><text x="442" y="220" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="850" fill="#071321">SEND MESSAGE</text>
+  </g>
+  <text x="33" y="339" font-family="Inter,Arial,sans-serif" font-size="10" fill="#8197B4">Token is forwarded to Discord through the app API route; it is not logged or stored server-side.</text>
+</svg>
